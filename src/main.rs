@@ -2,28 +2,37 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#[macro_use]
-mod log;
-
-mod location;
 mod path;
 mod wasm;
 
 use fallible_iterator::FallibleIterator;
 use gimli::{ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, ReaderOffset};
 use indexmap::IndexMap;
-use js_sys::JsString;
-use location::{LocationEntry, Pos, SourceMapEntry};
 use path::Path;
+use serde::Serialize;
 use std::collections::HashMap;
 use std::convert::TryInto;
+use std::io::Read;
 use std::rc::Rc;
-use wasm::{parse_sections, Error, SectionKind};
-use wasm_bindgen::prelude::*;
+use wasm::{parse_sections, ResolverError, SectionKind};
+use std::{error, fmt};
+
+#[derive(Debug, PartialOrd, Ord, PartialEq, Eq, Clone, Copy)]
+pub struct Pos {
+  line: u32,
+  column: u32,
+}
+
+#[derive(Debug, Clone)]
+struct LocationEntry {
+  filename: Rc<String>,
+  addr: u64,
+  pos: Pos,
+}
 
 pub struct FileEntries {
-  pub filename: Rc<JsString>,
-  pub entries: Vec<LocationEntry>,
+  filename: Rc<String>,
+  entries: Vec<LocationEntry>,
 }
 
 enum FuncState {
@@ -32,18 +41,14 @@ enum FuncState {
   Normal,
 }
 
-#[wasm_bindgen]
 #[derive(Default)]
 pub struct Resolver {
   locations: Vec<LocationEntry>,
-  reverse_locations: IndexMap<String, FileEntries>,
+  locations_by_filename: IndexMap<Rc<String>, FileEntries>,
 }
 
 impl Resolver {
-  pub fn new<R: Reader + Clone + Default>(src: R) -> Result<Resolver, Error> {
-    #[cfg(feature = "log")]
-    console_error_panic_hook::set_once();
-
+  pub fn new<R: Reader + Clone + Default>(src: R) -> Result<Resolver, ResolverError> {
     let mut code_section_offset = None;
     let mut sections = HashMap::new();
 
@@ -63,13 +68,13 @@ impl Resolver {
       }
     }
 
-    let code_section_offset: u32 = code_section_offset
-      .ok_or_else(|| Error::MissingCodeSection)?
+    let code_section_offset: u64 = code_section_offset
+      .ok_or_else(|| ResolverError::MissingCodeSection)?
       .into_u64()
       .try_into()
       .unwrap();
 
-    let dwarf = Dwarf::load::<_, _, Error>(
+    let dwarf = Dwarf::load::<_, _, ResolverError>(
       |id| Ok(sections.get(id.name()).cloned().unwrap_or_default()),
       |_| Ok(Default::default()),
     )?;
@@ -152,11 +157,10 @@ impl Resolver {
             }
             ColumnType::LeftEdge => 0,
           };
-
-          Pos::new(line, column)
+          Pos { line, column }
         };
 
-        let addr: u32 = row.address().try_into().unwrap();
+        let addr: u64 = row.address().try_into().unwrap();
 
         let mut path = unit_dir.borrow();
 
@@ -169,12 +173,12 @@ impl Resolver {
         let path_name_value = dwarf.attr_string(&unit, file.path_name())?;
         path.push(path_name_value.to_string()?);
 
-        let dest = path.to_uri();
+        let dest = Rc::new(path.to_uri());
 
-        let file_entries = match res.reverse_locations.entry(dest) {
+        let file_entries = match res.locations_by_filename.entry(dest) {
           indexmap::map::Entry::Occupied(entry) => entry.into_mut(),
           indexmap::map::Entry::Vacant(entry) => {
-            let filename = Rc::new(JsString::from(entry.key().as_str()));
+            let filename = entry.key().clone();
             entry.insert(FileEntries {
               filename,
               entries: Vec::new(),
@@ -182,7 +186,11 @@ impl Resolver {
           }
         };
 
-        let loc = LocationEntry::new(code_section_offset + addr, &file_entries.filename, pos);
+        let loc = LocationEntry {
+          filename: file_entries.filename.clone(),
+          addr: code_section_offset + addr,
+          pos,
+        };
 
         res.locations.push(loc.clone());
         file_entries.entries.push(loc);
@@ -193,80 +201,121 @@ impl Resolver {
       }
     }
 
-    res.locations.sort_by_key(|loc| loc.addr());
-    res.locations.dedup_by_key(|loc| loc.addr());
+    res.locations.sort_by_key(|loc| loc.addr);
+    res.locations.dedup_by_key(|loc| loc.addr);
 
-    for file_entries in res.reverse_locations.values_mut() {
+    for file_entries in res.locations_by_filename.values_mut() {
       let entries = &mut file_entries.entries;
-      entries.sort_by_key(|loc| loc.pos());
-      entries.dedup_by_key(|loc| loc.pos());
+      entries.sort_by_key(|loc| loc.pos);
+      entries.dedup_by_key(|loc| loc.pos);
     }
 
     Ok(res)
   }
-}
-
-#[wasm_bindgen]
-impl Resolver {
-  #[wasm_bindgen(constructor)]
-  pub fn from_slice(src: &[u8]) -> Result<Resolver, JsValue> {
-    Self::new(EndianSlice::new(src, LittleEndian))
-      .map_err(|err| js_sys::Error::new(&err.to_string()).into())
-  }
-
-  #[wasm_bindgen(js_name = listFiles)]
-  pub fn list_files(&self) -> js_sys::Array {
-    let array = js_sys::Array::new();
-
-    for file_entries in self.reverse_locations.values() {
-      array.push(&file_entries.filename);
-    }
-
-    array
-  }
-
-  #[wasm_bindgen(js_name = listMappings)]
-  pub fn list_mappings(&self) -> js_sys::Array {
-    // This method will convert all mappings, which sort of
-    // goes against the idea of doing that lazily as an optimisation,
-    // but it's used only by blackboxing implementation in DevTools,
-    // and so shouldn't be called in most common scenarios.
-    let array = js_sys::Array::new();
-
-    for loc in &self.locations {
-      array.push(loc.as_js());
-    }
-
-    array
-  }
-
-  pub fn resolve(&self, addr: u32) -> Option<SourceMapEntry> {
-    let idx = match self.locations.binary_search_by_key(&addr, |loc| loc.addr()) {
-      Ok(idx) => idx,
-      // Check that we're not going before the beginning.
-      Err(idx) => idx.checked_sub(1)?,
+ 
+  fn source_map(&self) -> Result<SourceMap, RunError> {
+    let mut result = SourceMap {
+      files: vec![],
+      locations: vec![],
     };
 
-    Some(self.locations[idx].as_js().clone())
-  }
-
-  #[wasm_bindgen(js_name = resolveReverse)]
-  pub fn resolve_reverse(&self, file: &str, line: u32, column: u32) -> Option<SourceMapEntry> {
-    let entries = &self.reverse_locations.get(file)?.entries;
-
-    // Find arbitrary position that is >= than requested.
-    let idx = entries
-      .binary_search_by_key(&Pos::new(line, column), |loc| loc.pos())
-      .unwrap_or_else(|idx| idx);
-
-    // Check that we're not past the end.
-    let loc = entries.get(idx)?;
-
-    // Make sure we found a position on the same line.
-    if loc.pos().line() != line {
-      return None;
+    let mut file_indexes: HashMap<Rc<String>, usize> = HashMap::new();
+    for (filename, _) in self.locations_by_filename.iter() {
+      file_indexes.insert(filename.clone(), result.files.len());
+      result.files.push(filename.as_ref().clone());
+    }
+    for location in &self.locations {
+      let file_index = file_indexes
+        .get(&location.filename)
+        .ok_or(RunError::Internal("fileIndex did not contain file"))?;
+      result.locations.push(vec![
+        location.addr,
+        *file_index as u64,
+        location.pos.line as u64,
+        location.pos.column as u64,
+      ])
     }
 
-    Some(loc.as_js().clone())
+    Ok(result)
+  }
+}
+
+#[derive(Default, Serialize)]
+pub struct SourceMap {
+  files: Vec<String>,
+  locations: Vec<Vec<u64>>,
+}
+
+#[derive(Debug)]
+pub enum RunError {
+  Resolver(ResolverError),
+  Io(std::io::Error),
+  Json(serde_json::Error),
+  Internal(&'static str),
+}
+
+impl fmt::Display for RunError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            RunError::Resolver(err) => write!(f, "resolver error: {}", err),
+            RunError::Io(err) => write!(f, "io error: {}", err),
+            RunError::Json(err) => write!(f, "json error: {}", err),
+            RunError::Internal(msg) => write!(f, "internal error: {}", msg),
+        }
+    }
+}
+
+impl error::Error for RunError {
+    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+        match self {
+            RunError::Resolver(err) => Some(err),
+            RunError::Io(err) => Some(err),
+            RunError::Json(err) => Some(err),
+            RunError::Internal(_) => None,
+        }
+    }
+}
+
+fn run() -> Result<(), RunError> {
+  let mut buffer = Vec::new();
+  std::io::stdin()
+    .read_to_end(&mut buffer)
+    .map_err(RunError::Io)?;
+  let slice = EndianSlice::new(buffer.as_slice(), LittleEndian);
+  let resolver = Resolver::new(slice).map_err(RunError::Resolver)?;
+  let source_map = resolver.source_map()?;
+  serde_json::to_writer(std::io::stdout(), &source_map).map_err(RunError::Json)?;
+  Ok(())
+}
+
+fn main() {
+  run().unwrap_or_else(|err| {
+    eprintln!("Error: {}", err);
+    std::process::exit(1);
+  });
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  pub fn test_parse() {
+    // read a file in
+    let src = std::fs::read(
+      "/Users/chirino/sandbox/chicory/wasm-corpus/src/main/resources/compiled/count_vowels.rs.wasm",
+    )
+    .unwrap();
+    let r = Resolver::new(EndianSlice::new(src.as_slice(), LittleEndian)).unwrap();
+
+    for file_entries in r.locations_by_filename.values() {
+      println!("File: {:?}", file_entries.filename);
+      for entry in &file_entries.entries {
+        println!(
+          "  {:#x} - {}:{} ",
+          entry.addr, entry.pos.line, entry.pos.column
+        );
+      }
+    }
   }
 }

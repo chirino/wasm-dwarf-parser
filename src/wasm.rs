@@ -2,30 +2,45 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-use failure::Fail;
 use fallible_iterator::FallibleIterator;
 use gimli::{Reader, ReaderOffset};
 use std::convert::TryInto;
 use std::num::NonZeroU8;
+use std::{error, fmt};
 
-#[derive(Debug, Fail)]
-pub enum Error {
-  #[fail(display = "WebAssembly magic mismatch.")]
+#[derive(Debug)]
+pub enum ResolverError {
   InvalidMagic,
-
-  #[fail(display = "Unsupported WebAssembly version {}.", _0)]
   UnsupportedVersion(u32),
-
-  #[fail(display = "Missing code section.")]
   MissingCodeSection,
-
-  #[fail(display = "{}", _0)]
-  Reader(#[fail(cause)] gimli::Error),
+  Reader(gimli::Error),
 }
 
-impl From<gimli::Error> for Error {
+impl fmt::Display for ResolverError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            ResolverError::InvalidMagic => write!(f, "WebAssembly magic mismatch."),
+            ResolverError::UnsupportedVersion(v) => {
+                write!(f, "Unsupported WebAssembly version {}.", v)
+            }
+            ResolverError::MissingCodeSection => write!(f, "Missing code section."),
+            ResolverError::Reader(err) => write!(f, "{}", err),
+        }
+    }
+}
+
+impl error::Error for ResolverError {
+    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+        match self {
+            ResolverError::Reader(err) => Some(err),
+            _ => None,
+        }
+    }
+}
+
+impl From<gimli::Error> for ResolverError {
   fn from(err: gimli::Error) -> Self {
-    Error::Reader(err)
+    ResolverError::Reader(err)
   }
 }
 
@@ -43,7 +58,7 @@ pub struct Section<R> {
 
 pub fn parse_sections<R: Reader>(
   mut reader: R,
-) -> Result<impl FallibleIterator<Item = Section<R>, Error = gimli::Error>, Error> {
+) -> Result<impl FallibleIterator<Item = Section<R>, Error = gimli::Error>, ResolverError> {
   struct Iterator<R> {
     reader: R,
   }
@@ -85,12 +100,12 @@ pub fn parse_sections<R: Reader>(
   }
 
   if reader.read_u8_array::<[u8; 4]>()? != *b"\0asm" {
-    return Err(Error::InvalidMagic);
+    return Err(ResolverError::InvalidMagic);
   }
 
   let version = reader.read_u32()?;
   if version != 1 {
-    return Err(Error::UnsupportedVersion(version));
+    return Err(ResolverError::UnsupportedVersion(version));
   }
 
   Ok(Iterator { reader })

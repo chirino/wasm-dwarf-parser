@@ -1,2 +1,14 @@
-/target
-**/*.rs.bk
+# IntelliJ IDEA files
+.idea
+*.iml
+*~
+
+target/
+.classpath
+.project
+.settings
+
+
+# mac-os files
+.DS_Store
+
