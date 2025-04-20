@@ -17,25 +17,25 @@ pub enum ResolverError {
 }
 
 impl fmt::Display for ResolverError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            ResolverError::InvalidMagic => write!(f, "WebAssembly magic mismatch."),
-            ResolverError::UnsupportedVersion(v) => {
-                write!(f, "Unsupported WebAssembly version {}.", v)
-            }
-            ResolverError::MissingCodeSection => write!(f, "Missing code section."),
-            ResolverError::Reader(err) => write!(f, "{}", err),
-        }
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    match self {
+      ResolverError::InvalidMagic => write!(f, "WebAssembly magic mismatch."),
+      ResolverError::UnsupportedVersion(v) => {
+        write!(f, "Unsupported WebAssembly version {}.", v)
+      }
+      ResolverError::MissingCodeSection => write!(f, "Missing code section."),
+      ResolverError::Reader(err) => write!(f, "{}", err),
     }
+  }
 }
 
 impl error::Error for ResolverError {
-    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
-        match self {
-            ResolverError::Reader(err) => Some(err),
-            _ => None,
-        }
+  fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+    match self {
+      ResolverError::Reader(err) => Some(err),
+      _ => None,
     }
+  }
 }
 
 impl From<gimli::Error> for ResolverError {

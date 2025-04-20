@@ -9,13 +9,13 @@ use fallible_iterator::FallibleIterator;
 use gimli::{ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, ReaderOffset};
 use indexmap::IndexMap;
 use path::Path;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::convert::TryInto;
 use std::io::Read;
 use std::rc::Rc;
-use wasm::{parse_sections, ResolverError, SectionKind};
 use std::{error, fmt};
+use wasm::{parse_sections, ResolverError, SectionKind};
 
 #[derive(Debug, PartialOrd, Ord, PartialEq, Eq, Clone, Copy)]
 pub struct Pos {
@@ -212,7 +212,7 @@ impl Resolver {
 
     Ok(res)
   }
- 
+
   fn source_map(&self) -> Result<SourceMap, RunError> {
     let mut result = SourceMap {
       files: vec![],
@@ -240,7 +240,7 @@ impl Resolver {
   }
 }
 
-#[derive(Default, Serialize)]
+#[derive(Default, Serialize, Deserialize, PartialEq, Debug)]
 pub struct SourceMap {
   files: Vec<String>,
   locations: Vec<Vec<u64>>,
@@ -255,25 +255,25 @@ pub enum RunError {
 }
 
 impl fmt::Display for RunError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            RunError::Resolver(err) => write!(f, "resolver error: {}", err),
-            RunError::Io(err) => write!(f, "io error: {}", err),
-            RunError::Json(err) => write!(f, "json error: {}", err),
-            RunError::Internal(msg) => write!(f, "internal error: {}", msg),
-        }
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    match self {
+      RunError::Resolver(err) => write!(f, "resolver error: {}", err),
+      RunError::Io(err) => write!(f, "io error: {}", err),
+      RunError::Json(err) => write!(f, "json error: {}", err),
+      RunError::Internal(msg) => write!(f, "internal error: {}", msg),
     }
+  }
 }
 
 impl error::Error for RunError {
-    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
-        match self {
-            RunError::Resolver(err) => Some(err),
-            RunError::Io(err) => Some(err),
-            RunError::Json(err) => Some(err),
-            RunError::Internal(_) => None,
-        }
+  fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+    match self {
+      RunError::Resolver(err) => Some(err),
+      RunError::Io(err) => Some(err),
+      RunError::Json(err) => Some(err),
+      RunError::Internal(_) => None,
     }
+  }
 }
 
 fn run() -> Result<(), RunError> {
@@ -302,20 +302,15 @@ mod tests {
   #[test]
   pub fn test_parse() {
     // read a file in
-    let src = std::fs::read(
-      "/Users/chirino/sandbox/chicory/wasm-corpus/src/main/resources/compiled/count_vowels.rs.wasm",
-    )
-    .unwrap();
-    let r = Resolver::new(EndianSlice::new(src.as_slice(), LittleEndian)).unwrap();
+    let src = std::fs::read("./src/count_vowels.rs.wasm").expect("could not read wasm file");
+    let resolver = Resolver::new(EndianSlice::new(src.as_slice(), LittleEndian)).unwrap();
+    let source_map = resolver.source_map().expect("source_map failed");
 
-    for file_entries in r.locations_by_filename.values() {
-      println!("File: {:?}", file_entries.filename);
-      for entry in &file_entries.entries {
-        println!(
-          "  {:#x} - {}:{} ",
-          entry.addr, entry.pos.line, entry.pos.column
-        );
-      }
-    }
+    // read count_vowels.rs.wasm.json
+    let expected: SourceMap = serde_json::from_reader(
+      std::fs::File::open("./src/count_vowels.rs.wasm.json").expect("could not read json file"),
+    )
+    .expect("json failed");
+    assert_eq!(source_map, expected);
   }
 }
