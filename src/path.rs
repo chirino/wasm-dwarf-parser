@@ -3,8 +3,15 @@
 // found in the LICENSE file.
 
 use std::borrow::Cow;
-
+fn is_uri(p: &str) -> bool {
+  // does it look like URI? wasisdk://v25.0
+  p.contains("://")
+}
 fn is_absolute(p: &str) -> bool {
+  // does it look like URI? wasisdk://v25.0
+  if is_uri(p) {
+    return true;
+  }
   let mut bytes = p.bytes();
   let b = match bytes.next() {
     Some(b) => b,
@@ -33,7 +40,7 @@ pub struct Path<'a>(Cow<'a, str>);
 
 impl<'a> Path<'a> {
   pub fn new(s: Cow<'a, str>) -> Self {
-    assert!(is_absolute(&s));
+    assert!(is_absolute(&s), "path is not absolute: {}", s);
     Path(s)
   }
 
@@ -64,7 +71,9 @@ impl<'a> Path<'a> {
   pub fn to_uri(&self) -> String {
     let path = &self.0;
 
-    if let Some(path) = strip_prefix(&path, "/rustc/") {
+    if is_uri(path) {
+      path.to_string().replace("\\", "/")
+    } else if let Some(path) = strip_prefix(&path, "/rustc/") {
       // TODO: avoid hardcoding this, and instead let users configure
       // path replacements in DevTools UI.
       format!("https://raw.githubusercontent.com/rust-lang/rust/{}", path)
@@ -104,6 +113,13 @@ mod tests {
     assert!(is_absolute("C:\\Windows\\System32"));
     assert!(!is_absolute("\\User"));
     assert!(!is_absolute("User\\Someone Special"));
+  }
+
+  #[test]
+  pub fn test_is_absolute_uri() {
+    assert!(is_absolute(
+      "wasisdk://v25.0/build/sysroot/wasi-libc-wasm32-wasip1"
+    ));
   }
 
   #[test]
