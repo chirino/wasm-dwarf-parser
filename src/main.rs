@@ -111,7 +111,8 @@ impl Resolver {
           .map(|comp_dir| comp_dir.to_string())
           .transpose()?
           .unwrap_or_default(),
-      );
+      )
+      .map_err(ResolverError::InvalidPath)?;
 
       let mut rows = line_program.rows();
 
@@ -246,6 +247,11 @@ pub struct SourceMap {
   locations: Vec<Vec<u64>>,
 }
 
+#[derive(Default, Serialize, Deserialize, PartialEq, Debug)]
+pub struct ErrorDoc {
+  error: String,
+}
+
 #[derive(Debug)]
 pub enum RunError {
   Resolver(ResolverError),
@@ -290,7 +296,13 @@ fn run() -> Result<(), RunError> {
 
 fn main() {
   run().unwrap_or_else(|err| {
-    eprintln!("Error: {}", err);
+    let error_doc = ErrorDoc {
+      error: err.to_string(),
+    };
+    serde_json::to_writer(std::io::stdout(), &error_doc).unwrap_or_else(|err| {
+      eprintln!("Error: {}", err);
+      std::process::exit(2);
+    });
     std::process::exit(1);
   });
 }

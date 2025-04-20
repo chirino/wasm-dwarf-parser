@@ -14,6 +14,7 @@ pub enum ResolverError {
   UnsupportedVersion(u32),
   MissingCodeSection,
   Reader(gimli::Error),
+  InvalidPath(String),
 }
 
 impl fmt::Display for ResolverError {
@@ -25,6 +26,7 @@ impl fmt::Display for ResolverError {
       }
       ResolverError::MissingCodeSection => write!(f, "Missing code section."),
       ResolverError::Reader(err) => write!(f, "{}", err),
+      ResolverError::InvalidPath(err) => write!(f, "{}", err),
     }
   }
 }

@@ -39,9 +39,12 @@ fn strip_prefix<'a>(p: &'a str, prefix: &'static str) -> Option<&'a str> {
 pub struct Path<'a>(Cow<'a, str>);
 
 impl<'a> Path<'a> {
-  pub fn new(s: Cow<'a, str>) -> Self {
-    assert!(is_absolute(&s), "path is not absolute: {}", s);
-    Path(s)
+  pub fn new(s: Cow<'a, str>) -> Result<Self, String> {
+    if is_absolute(&s) {
+      Ok(Path(s))
+    } else {
+      Err(format!("path is not absolute: {}", s))
+    }
   }
 
   pub fn push(&mut self, p2: Cow<'a, str>) {
@@ -124,12 +127,12 @@ mod tests {
 
   #[test]
   pub fn test_path_unix() {
-    let mut path = Path::new(Cow::from("/"));
+    let mut path = Path::new(Cow::from("/")).unwrap();
     path.push(Cow::from("etc"));
     path.push(Cow::from("passwd"));
     assert_eq!(path.to_uri(), "file:///etc/passwd");
 
-    let mut path = Path::new(Cow::from("/etc"));
+    let mut path = Path::new(Cow::from("/etc")).unwrap();
     path.push(Cow::from("passwd"));
     path.push(Cow::from("/etc/hosts"));
     assert_eq!(path.to_uri(), "file:///etc/hosts");
@@ -137,17 +140,17 @@ mod tests {
 
   #[test]
   pub fn test_path_windows() {
-    let mut path = Path::new(Cow::from("C:\\"));
+    let mut path = Path::new(Cow::from("C:\\")).unwrap();
     path.push(Cow::from("Windows"));
     path.push(Cow::from("System32"));
     assert_eq!(path.to_uri(), "file:///C:\\Windows\\System32");
 
-    let mut path = Path::new(Cow::from("\\\\"));
+    let mut path = Path::new(Cow::from("\\\\")).unwrap();
     path.push(Cow::from("Server"));
     path.push(Cow::from("Share"));
     assert_eq!(path.to_uri(), "file:///\\\\Server\\Share");
 
-    let mut path = Path::new(Cow::from("a:\\"));
+    let mut path = Path::new(Cow::from("a:\\")).unwrap();
     path.push(Cow::from("Folder"));
     path.push(Cow::from("F:\\Directory\\File.html"));
     assert_eq!(path.to_uri(), "file:///F:\\Directory\\File.html");
@@ -155,7 +158,7 @@ mod tests {
 
   #[test]
   pub fn test_path_rustc() {
-    let path = Path::new(Cow::from("/rustc/folder/file.rs"));
+    let path = Path::new(Cow::from("/rustc/folder/file.rs")).unwrap();
     assert_eq!(
       path.to_uri(),
       "https://raw.githubusercontent.com/rust-lang/rust/folder/file.rs"
