@@ -3,4 +3,4 @@ that inputs a WebAssembly file on stdin and outputs source map data as json on s
 
 To build for use by wasm, run:
 
-    cargo --target=wasm32-wasip1 --release
+    cargo build --target=wasm32-wasip1 --release

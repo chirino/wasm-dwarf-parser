@@ -6,7 +6,7 @@ mod path;
 mod wasm;
 
 use fallible_iterator::FallibleIterator;
-use gimli::{ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, ReaderOffset};
+use gimli::{constants, ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, ReaderOffset};
 use indexmap::IndexMap;
 use path::Path;
 use serde::{Deserialize, Serialize};
@@ -25,13 +25,12 @@ pub struct Pos {
 
 #[derive(Debug, Clone)]
 struct LocationEntry {
-  filename: Rc<String>,
   addr: u64,
   pos: Pos,
 }
 
 pub struct FileEntries {
-  filename: Rc<String>,
+  language: u16,
   entries: Vec<LocationEntry>,
 }
 
@@ -91,7 +90,7 @@ impl Resolver {
         None => continue,
       };
 
-      let is_rust = {
+      let lang = {
         let mut entries = unit.entries();
         entries.next_entry()?;
         match entries
@@ -99,10 +98,12 @@ impl Resolver {
           .unwrap()
           .attr_value(gimli::DW_AT_language)?
         {
-          Some(gimli::AttributeValue::Language(gimli::constants::DW_LANG_Rust)) => true,
-          _ => false,
+          Some(gimli::AttributeValue::Language(lang)) => lang.0,
+          _ => 0,
         }
       };
+
+      let is_rust = lang == constants::DW_LANG_Rust.0;
 
       let unit_dir = Path::new(
         unit
@@ -178,17 +179,13 @@ impl Resolver {
 
         let file_entries = match res.locations_by_filename.entry(dest) {
           indexmap::map::Entry::Occupied(entry) => entry.into_mut(),
-          indexmap::map::Entry::Vacant(entry) => {
-            let filename = entry.key().clone();
-            entry.insert(FileEntries {
-              filename,
-              entries: Vec::new(),
-            })
-          }
+          indexmap::map::Entry::Vacant(entry) => entry.insert(FileEntries {
+            language: lang,
+            entries: Vec::new(),
+          }),
         };
 
         let loc = LocationEntry {
-          filename: file_entries.filename.clone(),
           addr: code_section_offset + addr,
           pos,
         };
@@ -214,29 +211,25 @@ impl Resolver {
     Ok(res)
   }
 
-  fn source_map(&self) -> Result<SourceMap, RunError> {
-    let mut result = SourceMap {
-      files: vec![],
-      locations: vec![],
-    };
-
-    let mut file_indexes: HashMap<Rc<String>, usize> = HashMap::new();
-    for (filename, _) in self.locations_by_filename.iter() {
-      file_indexes.insert(filename.clone(), result.files.len());
-      result.files.push(filename.as_ref().clone());
+  fn source_files(&self) -> Result<Vec<SourceFile>, RunError> {
+    let mut result = vec![];
+    for (filename, entry) in self.locations_by_filename.iter() {
+      result.push(SourceFile {
+        file: filename.as_ref().clone(),
+        language: entry.language,
+        lines: entry
+          .entries
+          .iter()
+          .map(|location| {
+            vec![
+              location.addr,
+              location.pos.line as u64,
+              location.pos.column as u64,
+            ]
+          })
+          .collect(),
+      });
     }
-    for location in &self.locations {
-      let file_index = file_indexes
-        .get(&location.filename)
-        .ok_or(RunError::Internal("fileIndex did not contain file"))?;
-      result.locations.push(vec![
-        location.addr,
-        *file_index as u64,
-        location.pos.line as u64,
-        location.pos.column as u64,
-      ])
-    }
-
     Ok(result)
   }
 }
@@ -248,8 +241,18 @@ pub struct SourceMap {
 }
 
 #[derive(Default, Serialize, Deserialize, PartialEq, Debug)]
-pub struct ErrorDoc {
-  error: String,
+pub struct SourceFile {
+  file: String,
+  language: u16,
+  lines: Vec<Vec<u64>>,
+}
+
+#[derive(Default, Serialize, Deserialize, PartialEq, Debug)]
+pub struct SourceMapResult {
+  #[serde(skip_serializing_if = "Option::is_none")]
+  files: Option<Vec<SourceFile>>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  error: Option<String>,
 }
 
 #[derive(Debug)]
@@ -289,15 +292,19 @@ fn run() -> Result<(), RunError> {
     .map_err(RunError::Io)?;
   let slice = EndianSlice::new(buffer.as_slice(), LittleEndian);
   let resolver = Resolver::new(slice).map_err(RunError::Resolver)?;
-  let source_map = resolver.source_map()?;
-  serde_json::to_writer(std::io::stdout(), &source_map).map_err(RunError::Json)?;
+  let result = SourceMapResult {
+    files: Some(resolver.source_files()?),
+    error: None,
+  };
+  serde_json::to_writer(std::io::stdout(), &result).map_err(RunError::Json)?;
   Ok(())
 }
 
 fn main() {
   run().unwrap_or_else(|err| {
-    let error_doc = ErrorDoc {
-      error: err.to_string(),
+    let error_doc = SourceMapResult {
+      error: Some(err.to_string()),
+      files: None,
     };
     serde_json::to_writer(std::io::stdout(), &error_doc).unwrap_or_else(|err| {
       eprintln!("Error: {}", err);
@@ -316,13 +323,22 @@ mod tests {
     // read a file in
     let src = std::fs::read("./src/count_vowels.rs.wasm").expect("could not read wasm file");
     let resolver = Resolver::new(EndianSlice::new(src.as_slice(), LittleEndian)).unwrap();
-    let source_map = resolver.source_map().expect("source_map failed");
+    let actual = SourceMapResult {
+      files: Some(resolver.source_files().expect("source_map failed")),
+      error: None,
+    };
+
+    // std::fs::write(
+    //   "./src/count_vowels.rs.wasm.json",
+    //   serde_json::to_string_pretty(&actual).expect("json failed"),
+    // )
+    // .unwrap();
 
     // read count_vowels.rs.wasm.json
-    let expected: SourceMap = serde_json::from_reader(
+    let expected: SourceMapResult = serde_json::from_reader(
       std::fs::File::open("./src/count_vowels.rs.wasm.json").expect("could not read json file"),
     )
     .expect("json failed");
-    assert_eq!(source_map, expected);
+    assert_eq!(actual, expected);
   }
 }
