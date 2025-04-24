@@ -10,6 +10,7 @@ use gimli::{constants, ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, Rea
 use indexmap::IndexMap;
 use path::Path;
 use serde::{Deserialize, Serialize};
+use std::borrow::Cow;
 use std::collections::HashMap;
 use std::convert::TryInto;
 use std::io::Read;
@@ -105,16 +106,6 @@ impl Resolver {
 
       let is_rust = lang == constants::DW_LANG_Rust.0;
 
-      let unit_dir = Path::new(
-        unit
-          .comp_dir
-          .as_ref()
-          .map(|comp_dir| comp_dir.to_string())
-          .transpose()?
-          .unwrap_or_default(),
-      )
-      .map_err(ResolverError::InvalidPath)?;
-
       let mut rows = line_program.rows();
 
       let mut func_state = FuncState::Start;
@@ -164,18 +155,19 @@ impl Resolver {
 
         let addr: u64 = row.address().try_into().unwrap();
 
-        let mut path = unit_dir.borrow();
+        // let mut path = unit_dir.borrow();
+        let mut path = Path::new(Cow::from("."));
 
         let dir_value;
         if let Some(dir) = file.directory(header) {
           dir_value = dwarf.attr_string(&unit, dir)?;
-          path.push(dir_value.to_string()?);
+          path = Path::new(Cow::from(dir_value.to_string()?));
         }
 
         let path_name_value = dwarf.attr_string(&unit, file.path_name())?;
         path.push(path_name_value.to_string()?);
 
-        let dest = Rc::new(path.to_uri());
+        let dest = Rc::new(path.to_string());
 
         let file_entries = match res.locations_by_filename.entry(dest) {
           indexmap::map::Entry::Occupied(entry) => entry.into_mut(),
