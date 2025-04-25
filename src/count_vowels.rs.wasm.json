@@ -5,7 +5,8 @@
       "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb",
       "files": [
         {
-          "file": "library/core/src/any.rs",
+          "directory": "library/core/src",
+          "file": "any.rs",
           "language": 28,
           "lines": [
             [
@@ -156,7 +157,8 @@
           ]
         },
         {
-          "file": "library/std/src/panicking.rs",
+          "directory": "library/std/src",
+          "file": "panicking.rs",
           "language": 28,
           "lines": [
             [
@@ -847,7 +849,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/mod.rs",
+          "directory": "library/core/src/fmt",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -1818,7 +1821,8 @@
           ]
         },
         {
-          "file": "library/std/src/backtrace.rs",
+          "directory": "library/std/src",
+          "file": "backtrace.rs",
           "language": 28,
           "lines": [
             [
@@ -2194,7 +2198,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/backtrace.rs",
+          "directory": "library/std/src/sys",
+          "file": "backtrace.rs",
           "language": 28,
           "lines": [
             [
@@ -2315,7 +2320,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/raw_vec.rs",
+          "directory": "library/alloc/src",
+          "file": "raw_vec.rs",
           "language": 28,
           "lines": [
             [
@@ -3666,7 +3672,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/vec/mod.rs",
+          "directory": "library/alloc/src/vec",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -4297,7 +4304,8 @@
           ]
         },
         {
-          "file": "library/core/src/result.rs",
+          "directory": "library/core/src",
+          "file": "result.rs",
           "language": 28,
           "lines": [
             [
@@ -4868,7 +4876,8 @@
           ]
         },
         {
-          "file": "library/std/src/ffi/os_str.rs",
+          "directory": "library/std/src/ffi",
+          "file": "os_str.rs",
           "language": 28,
           "lines": [
             [
@@ -4969,7 +4978,8 @@
           ]
         },
         {
-          "file": "library/core/src/option.rs",
+          "directory": "library/core/src",
+          "file": "option.rs",
           "language": 28,
           "lines": [
             [
@@ -5950,7 +5960,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/num.rs",
+          "directory": "library/core/src/fmt",
+          "file": "num.rs",
           "language": 28,
           "lines": [
             [
@@ -6066,7 +6077,8 @@
           ]
         },
         {
-          "file": "library/std/src/path.rs",
+          "directory": "library/std/src",
+          "file": "path.rs",
           "language": 28,
           "lines": [
             [
@@ -8162,7 +8174,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/process.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "process.rs",
           "language": 28,
           "lines": [
             [
@@ -8573,7 +8586,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/lossy.rs",
+          "directory": "library/core/src/str",
+          "file": "lossy.rs",
           "language": 28,
           "lines": [
             [
@@ -8594,7 +8608,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/os_str/bytes.rs",
+          "directory": "library/std/src/sys/os_str",
+          "file": "bytes.rs",
           "language": 28,
           "lines": [
             [
@@ -8890,7 +8905,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/nonzero.rs",
+          "directory": "library/core/src/num",
+          "file": "nonzero.rs",
           "language": 28,
           "lines": [
             [
@@ -8901,7 +8917,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/boxed.rs",
+          "directory": "library/alloc/src",
+          "file": "boxed.rs",
           "language": 28,
           "lines": [
             [
@@ -9142,7 +9159,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/iter/macros.rs",
+          "directory": "library/core/src/slice/iter",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -10048,7 +10066,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/builders.rs",
+          "directory": "library/core/src/fmt",
+          "file": "builders.rs",
           "language": 28,
           "lines": [
             [
@@ -10139,7 +10158,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/non_null.rs",
+          "directory": "library/core/src/ptr",
+          "file": "non_null.rs",
           "language": 28,
           "lines": [
             [
@@ -10555,7 +10575,8 @@
           ]
         },
         {
-          "file": "library/core/src/macros/mod.rs",
+          "directory": "library/core/src/macros",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -10636,7 +10657,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/methods.rs",
+          "directory": "library/core/src/char",
+          "file": "methods.rs",
           "language": 28,
           "lines": [
             [
@@ -11132,7 +11154,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/mod.rs",
+          "directory": "library/std/src/io",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -11743,7 +11766,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/uint_macros.rs",
+          "directory": "library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -12424,7 +12448,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/mut_ptr.rs",
+          "directory": "library/core/src/ptr",
+          "file": "mut_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -13390,7 +13415,8 @@
           ]
         },
         {
-          "file": "library/core/src/intrinsics/mod.rs",
+          "directory": "library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -14216,7 +14242,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/reentrant_lock.rs",
+          "directory": "library/std/src/sync",
+          "file": "reentrant_lock.rs",
           "language": 28,
           "lines": [
             [
@@ -14452,7 +14479,8 @@
           ]
         },
         {
-          "file": "library/core/src/cell.rs",
+          "directory": "library/core/src",
+          "file": "cell.rs",
           "language": 28,
           "lines": [
             [
@@ -14933,7 +14961,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/mod.rs",
+          "directory": "library/core/src/ptr",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -16684,7 +16713,8 @@
           ]
         },
         {
-          "file": "library/core/src/mem/mod.rs",
+          "directory": "library/core/src/mem",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -16840,7 +16870,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/alloc.rs",
+          "directory": "library/alloc/src",
+          "file": "alloc.rs",
           "language": 28,
           "lines": [
             [
@@ -17571,7 +17602,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/function.rs",
+          "directory": "library/core/src/ops",
+          "file": "function.rs",
           "language": 28,
           "lines": [
             [
@@ -17607,7 +17639,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/map.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "map.rs",
           "language": 28,
           "lines": [
             [
@@ -17798,7 +17831,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/navigate.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "navigate.rs",
           "language": 28,
           "lines": [
             [
@@ -18019,7 +18053,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/node.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "node.rs",
           "language": 28,
           "lines": [
             [
@@ -20300,7 +20335,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/index.rs",
+          "directory": "library/core/src/slice",
+          "file": "index.rs",
           "language": 28,
           "lines": [
             [
@@ -21896,7 +21932,8 @@
           ]
         },
         {
-          "file": "library/core/src/sync/atomic.rs",
+          "directory": "library/core/src/sync",
+          "file": "atomic.rs",
           "language": 28,
           "lines": [
             [
@@ -22252,7 +22289,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/sync.rs",
+          "directory": "library/alloc/src",
+          "file": "sync.rs",
           "language": 28,
           "lines": [
             [
@@ -22558,7 +22596,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/rc.rs",
+          "directory": "library/alloc/src",
+          "file": "rc.rs",
           "language": 28,
           "lines": [
             [
@@ -22594,7 +22633,8 @@
           ]
         },
         {
-          "file": "library/std/src/thread/spawnhook.rs",
+          "directory": "library/std/src/thread",
+          "file": "spawnhook.rs",
           "language": 28,
           "lines": [
             [
@@ -22655,7 +22695,8 @@
           ]
         },
         {
-          "file": "library/core/src/panic.rs",
+          "directory": "library/core/src",
+          "file": "panic.rs",
           "language": 28,
           "lines": [
             [
@@ -22676,7 +22717,8 @@
           ]
         },
         {
-          "file": "library/core/src/panicking.rs",
+          "directory": "library/core/src",
+          "file": "panicking.rs",
           "language": 28,
           "lines": [
             [
@@ -22697,7 +22739,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/string.rs",
+          "directory": "library/alloc/src",
+          "file": "string.rs",
           "language": 28,
           "lines": [
             [
@@ -22803,7 +22846,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/search.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "search.rs",
           "language": 28,
           "lines": [
             [
@@ -22894,7 +22938,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/cmp.rs",
+          "directory": "library/core/src/slice",
+          "file": "cmp.rs",
           "language": 28,
           "lines": [
             [
@@ -23190,7 +23235,8 @@
           ]
         },
         {
-          "file": "library/core/src/cmp.rs",
+          "directory": "library/core/src",
+          "file": "cmp.rs",
           "language": 28,
           "lines": [
             [
@@ -23821,7 +23867,8 @@
           ]
         },
         {
-          "file": "library/core/src/mem/maybe_uninit.rs",
+          "directory": "library/core/src/mem",
+          "file": "maybe_uninit.rs",
           "language": 28,
           "lines": [
             [
@@ -24322,7 +24369,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/range.rs",
+          "directory": "library/core/src/iter",
+          "file": "range.rs",
           "language": 28,
           "lines": [
             [
@@ -24668,7 +24716,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/map/entry.rs",
+          "directory": "library/alloc/src/collections/btree/map",
+          "file": "entry.rs",
           "language": 28,
           "lines": [
             [
@@ -24704,7 +24753,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/range.rs",
+          "directory": "library/core/src/ops",
+          "file": "range.rs",
           "language": 28,
           "lines": [
             [
@@ -24740,7 +24790,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/remove.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "remove.rs",
           "language": 28,
           "lines": [
             [
@@ -24851,7 +24902,8 @@
           ]
         },
         {
-          "file": "library/core/src/convert/num.rs",
+          "directory": "library/core/src/convert",
+          "file": "num.rs",
           "language": 28,
           "lines": [
             [
@@ -24867,7 +24919,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/fix.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "fix.rs",
           "language": 28,
           "lines": [
             [
@@ -24968,7 +25021,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/ffi/c_str.rs",
+          "directory": "library/alloc/src/ffi",
+          "file": "c_str.rs",
           "language": 28,
           "lines": [
             [
@@ -25044,7 +25098,8 @@
           ]
         },
         {
-          "file": "library/core/src/alloc/layout.rs",
+          "directory": "library/core/src/alloc",
+          "file": "layout.rs",
           "language": 28,
           "lines": [
             [
@@ -25190,7 +25245,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/borrow.rs",
+          "directory": "library/alloc/src",
+          "file": "borrow.rs",
           "language": 28,
           "lines": [
             [
@@ -25211,7 +25267,8 @@
           ]
         },
         {
-          "file": "/rust/deps/dlmalloc-0.2.7/src/dlmalloc.rs",
+          "directory": "/rust/deps/dlmalloc-0.2.7/src",
+          "file": "dlmalloc.rs",
           "language": 28,
           "lines": [
             [
@@ -29392,7 +29449,8 @@
           ]
         },
         {
-          "file": "library/std/src/rt.rs",
+          "directory": "library/std/src",
+          "file": "rt.rs",
           "language": 28,
           "lines": [
             [
@@ -29418,7 +29476,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/sync/once/no_threads.rs",
+          "directory": "library/std/src/sys/sync/once",
+          "file": "no_threads.rs",
           "language": 28,
           "lines": [
             [
@@ -29549,7 +29608,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/poison/once.rs",
+          "directory": "library/std/src/sync/poison",
+          "file": "once.rs",
           "language": 28,
           "lines": [
             [
@@ -29680,7 +29740,8 @@
           ]
         },
         {
-          "file": "library/std/src/thread/mod.rs",
+          "directory": "library/std/src/thread",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -30081,7 +30142,8 @@
           ]
         },
         {
-          "file": "library/std/src/thread/scoped.rs",
+          "directory": "library/std/src/thread",
+          "file": "scoped.rs",
           "language": 28,
           "lines": [
             [
@@ -30157,7 +30219,8 @@
           ]
         },
         {
-          "file": "library/std/src/thread/current.rs",
+          "directory": "library/std/src/thread",
+          "file": "current.rs",
           "language": 28,
           "lines": [
             [
@@ -30288,7 +30351,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/const_ptr.rs",
+          "directory": "library/core/src/ptr",
+          "file": "const_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -30349,7 +30413,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/vec/spec_from_iter_nested.rs",
+          "directory": "library/alloc/src/vec",
+          "file": "spec_from_iter_nested.rs",
           "language": 28,
           "lines": [
             [
@@ -30380,7 +30445,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/vec/into_iter.rs",
+          "directory": "library/alloc/src/vec",
+          "file": "into_iter.rs",
           "language": 28,
           "lines": [
             [
@@ -30396,7 +30462,8 @@
           ]
         },
         {
-          "file": "library/std/src/thread/local.rs",
+          "directory": "library/std/src/thread",
+          "file": "local.rs",
           "language": 28,
           "lines": [
             [
@@ -30452,7 +30519,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/thread.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "thread.rs",
           "language": 28,
           "lines": [
             [
@@ -30473,7 +30541,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/time.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "time.rs",
           "language": 28,
           "lines": [
             [
@@ -30494,7 +30563,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/common.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "common.rs",
           "language": 28,
           "lines": [
             [
@@ -30610,7 +30680,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/memchr.rs",
+          "directory": "library/core/src/slice",
+          "file": "memchr.rs",
           "language": 28,
           "lines": [
             [
@@ -30806,7 +30877,8 @@
           ]
         },
         {
-          "file": "library/core/src/ffi/c_str.rs",
+          "directory": "library/core/src/ffi",
+          "file": "c_str.rs",
           "language": 28,
           "lines": [
             [
@@ -30827,7 +30899,8 @@
           ]
         },
         {
-          "file": "library/std/src/../../backtrace/src/symbolize/mod.rs",
+          "directory": "library/std/src/../../backtrace/src/symbolize",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -30978,7 +31051,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/sync/mutex/no_threads.rs",
+          "directory": "library/std/src/sys/sync/mutex",
+          "file": "no_threads.rs",
           "language": 28,
           "lines": [
             [
@@ -31169,7 +31243,8 @@
           ]
         },
         {
-          "file": "library/std/src/../../backtrace/src/print.rs",
+          "directory": "library/std/src/../../backtrace/src",
+          "file": "print.rs",
           "language": 28,
           "lines": [
             [
@@ -31590,7 +31665,8 @@
           ]
         },
         {
-          "file": "library/std/src/env.rs",
+          "directory": "library/std/src",
+          "file": "env.rs",
           "language": 28,
           "lines": [
             [
@@ -31691,7 +31767,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/os.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "os.rs",
           "language": 28,
           "lines": [
             [
@@ -31737,7 +31814,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/ascii.rs",
+          "directory": "library/core/src/slice",
+          "file": "ascii.rs",
           "language": 28,
           "lines": [
             [
@@ -31773,7 +31851,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/mod.rs",
+          "directory": "library/core/src/num",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -31884,7 +31963,8 @@
           ]
         },
         {
-          "file": "library/std/src/fs.rs",
+          "directory": "library/std/src",
+          "file": "fs.rs",
           "language": 28,
           "lines": [
             [
@@ -31935,7 +32015,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/fs.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "fs.rs",
           "language": 28,
           "lines": [
             [
@@ -31951,7 +32032,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/path/unix.rs",
+          "directory": "library/std/src/sys/path",
+          "file": "unix.rs",
           "language": 28,
           "lines": [
             [
@@ -32057,7 +32139,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/rev.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "rev.rs",
           "language": 28,
           "lines": [
             [
@@ -32098,7 +32181,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/collect.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "collect.rs",
           "language": 28,
           "lines": [
             [
@@ -32109,7 +32193,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/double_ended.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "double_ended.rs",
           "language": 28,
           "lines": [
             [
@@ -32135,7 +32220,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/iterator.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "iterator.rs",
           "language": 28,
           "lines": [
             [
@@ -32241,7 +32327,8 @@
           ]
         },
         {
-          "file": "library/std/src/hash/random.rs",
+          "directory": "library/std/src/hash",
+          "file": "random.rs",
           "language": 28,
           "lines": [
             [
@@ -32267,7 +32354,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/buffered/bufreader/buffer.rs",
+          "directory": "library/std/src/io/buffered/bufreader",
+          "file": "buffer.rs",
           "language": 28,
           "lines": [
             [
@@ -33013,7 +33101,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/mod.rs",
+          "directory": "library/core/src/slice",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -33134,7 +33223,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/buffered/bufwriter.rs",
+          "directory": "library/std/src/io/buffered",
+          "file": "bufwriter.rs",
           "language": 28,
           "lines": [
             [
@@ -33405,7 +33495,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/vec/drain.rs",
+          "directory": "library/alloc/src/vec",
+          "file": "drain.rs",
           "language": 28,
           "lines": [
             [
@@ -33421,7 +33512,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/niche_types.rs",
+          "directory": "library/core/src/num",
+          "file": "niche_types.rs",
           "language": 28,
           "lines": [
             [
@@ -33432,7 +33524,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/buffered/linewritershim.rs",
+          "directory": "library/std/src/io/buffered",
+          "file": "linewritershim.rs",
           "language": 28,
           "lines": [
             [
@@ -33598,7 +33691,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/error.rs",
+          "directory": "library/std/src/io",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -33874,7 +33968,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/error/repr_unpacked.rs",
+          "directory": "library/std/src/io/error",
+          "file": "repr_unpacked.rs",
           "language": 28,
           "lines": [
             [
@@ -33985,7 +34080,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/impls.rs",
+          "directory": "library/std/src/io",
+          "file": "impls.rs",
           "language": 28,
           "lines": [
             [
@@ -34316,7 +34412,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/accum.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "accum.rs",
           "language": 28,
           "lines": [
             [
@@ -34372,7 +34469,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/io/io_slice/unsupported.rs",
+          "directory": "library/std/src/sys/io/io_slice",
+          "file": "unsupported.rs",
           "language": 28,
           "lines": [
             [
@@ -34573,7 +34671,8 @@
           ]
         },
         {
-          "file": "library/core/src/io/borrowed_buf.rs",
+          "directory": "library/core/src/io",
+          "file": "borrowed_buf.rs",
           "language": 28,
           "lines": [
             [
@@ -34949,7 +35048,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/stdio.rs",
+          "directory": "library/std/src/io",
+          "file": "stdio.rs",
           "language": 28,
           "lines": [
             [
@@ -35750,7 +35850,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/once_lock.rs",
+          "directory": "library/std/src/sync",
+          "file": "once_lock.rs",
           "language": 28,
           "lines": [
             [
@@ -35821,7 +35922,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/buffered/bufreader.rs",
+          "directory": "library/std/src/io/buffered",
+          "file": "bufreader.rs",
           "language": 28,
           "lines": [
             [
@@ -36027,7 +36129,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/poison/mutex.rs",
+          "directory": "library/std/src/sync/poison",
+          "file": "mutex.rs",
           "language": 28,
           "lines": [
             [
@@ -36048,7 +36151,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/buffered/linewriter.rs",
+          "directory": "library/std/src/io/buffered",
+          "file": "linewriter.rs",
           "language": 28,
           "lines": [
             [
@@ -36069,7 +36173,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/thread_local/statik.rs",
+          "directory": "library/std/src/sys/thread_local",
+          "file": "statik.rs",
           "language": 28,
           "lines": [
             [
@@ -36130,7 +36235,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/util.rs",
+          "directory": "library/std/src/io",
+          "file": "util.rs",
           "language": 28,
           "lines": [
             [
@@ -36156,7 +36262,8 @@
           ]
         },
         {
-          "file": "library/std/src/io/cursor.rs",
+          "directory": "library/std/src/io",
+          "file": "cursor.rs",
           "language": 28,
           "lines": [
             [
@@ -36182,7 +36289,8 @@
           ]
         },
         {
-          "file": "library/std/src/net/socket_addr.rs",
+          "directory": "library/std/src/net",
+          "file": "socket_addr.rs",
           "language": 28,
           "lines": [
             [
@@ -36348,7 +36456,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/mod.rs",
+          "directory": "library/core/src/str",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -36379,7 +36488,8 @@
           ]
         },
         {
-          "file": "library/std/src/panic.rs",
+          "directory": "library/std/src",
+          "file": "panic.rs",
           "language": 28,
           "lines": [
             [
@@ -36510,7 +36620,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/zip.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "zip.rs",
           "language": 28,
           "lines": [
             [
@@ -36531,7 +36642,8 @@
           ]
         },
         {
-          "file": "library/core/src/array/equality.rs",
+          "directory": "library/core/src/array",
+          "file": "equality.rs",
           "language": 28,
           "lines": [
             [
@@ -36562,7 +36674,8 @@
           ]
         },
         {
-          "file": "library/std/src/process.rs",
+          "directory": "library/std/src",
+          "file": "process.rs",
           "language": 28,
           "lines": [
             [
@@ -36758,7 +36871,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys_common/process.rs",
+          "directory": "library/std/src/sys_common",
+          "file": "process.rs",
           "language": 28,
           "lines": [
             [
@@ -36929,7 +37043,8 @@
           ]
         },
         {
-          "file": "library/std/src/random.rs",
+          "directory": "library/std/src",
+          "file": "random.rs",
           "language": 28,
           "lines": [
             [
@@ -36940,7 +37055,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/random/unsupported.rs",
+          "directory": "library/std/src/sys/random",
+          "file": "unsupported.rs",
           "language": 28,
           "lines": [
             [
@@ -36996,7 +37112,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/mpmc/context.rs",
+          "directory": "library/std/src/sync/mpmc",
+          "file": "context.rs",
           "language": 28,
           "lines": [
             [
@@ -37012,7 +37129,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/mpmc/zero.rs",
+          "directory": "library/std/src/sync/mpmc",
+          "file": "zero.rs",
           "language": 28,
           "lines": [
             [
@@ -37043,7 +37161,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/mpsc.rs",
+          "directory": "library/std/src/sync",
+          "file": "mpsc.rs",
           "language": 28,
           "lines": [
             [
@@ -37109,7 +37228,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/poison/condvar.rs",
+          "directory": "library/std/src/sync/poison",
+          "file": "condvar.rs",
           "language": 28,
           "lines": [
             [
@@ -37135,7 +37255,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/barrier.rs",
+          "directory": "library/std/src/sync",
+          "file": "barrier.rs",
           "language": 28,
           "lines": [
             [
@@ -37211,7 +37332,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/sync/condvar/no_threads.rs",
+          "directory": "library/std/src/sys/sync/condvar",
+          "file": "no_threads.rs",
           "language": 28,
           "lines": [
             [
@@ -37242,7 +37364,8 @@
           ]
         },
         {
-          "file": "library/std/src/sync/lazy_lock.rs",
+          "directory": "library/std/src/sync",
+          "file": "lazy_lock.rs",
           "language": 28,
           "lines": [
             [
@@ -37263,7 +37386,8 @@
           ]
         },
         {
-          "file": "library/std/src/time.rs",
+          "directory": "library/std/src",
+          "file": "time.rs",
           "language": 28,
           "lines": [
             [
@@ -37389,7 +37513,8 @@
           ]
         },
         {
-          "file": "library/core/src/time.rs",
+          "directory": "library/core/src",
+          "file": "time.rs",
           "language": 28,
           "lines": [
             [
@@ -37640,7 +37765,8 @@
           ]
         },
         {
-          "file": "library/core/src/hint.rs",
+          "directory": "library/core/src",
+          "file": "hint.rs",
           "language": 28,
           "lines": [
             [
@@ -37666,7 +37792,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys_common/wstr.rs",
+          "directory": "library/std/src/sys_common",
+          "file": "wstr.rs",
           "language": 28,
           "lines": [
             [
@@ -37697,7 +37824,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys_common/wtf8.rs",
+          "directory": "library/std/src/sys_common",
+          "file": "wtf8.rs",
           "language": 28,
           "lines": [
             [
@@ -37983,7 +38111,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/validations.rs",
+          "directory": "library/core/src/str",
+          "file": "validations.rs",
           "language": 28,
           "lines": [
             [
@@ -38089,7 +38218,8 @@
           ]
         },
         {
-          "file": "library/core/src/unicode/unicode_data.rs",
+          "directory": "library/core/src/unicode",
+          "file": "unicode_data.rs",
           "language": 28,
           "lines": [
             [
@@ -38105,7 +38235,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/mod.rs",
+          "directory": "library/core/src/char",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -38126,7 +38257,8 @@
           ]
         },
         {
-          "file": "library/core/src/escape.rs",
+          "directory": "library/core/src",
+          "file": "escape.rs",
           "language": 28,
           "lines": [
             [
@@ -38292,7 +38424,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/flatten.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "flatten.rs",
           "language": 28,
           "lines": [
             [
@@ -38313,7 +38446,8 @@
           ]
         },
         {
-          "file": "library/std/src/alloc.rs",
+          "directory": "library/std/src",
+          "file": "alloc.rs",
           "language": 28,
           "lines": [
             [
@@ -38504,7 +38638,8 @@
           ]
         },
         {
-          "file": "/rust/deps/dlmalloc-0.2.7/src/lib.rs",
+          "directory": "/rust/deps/dlmalloc-0.2.7/src",
+          "file": "lib.rs",
           "language": 28,
           "lines": [
             [
@@ -38595,7 +38730,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/sync/rwlock/no_threads.rs",
+          "directory": "library/std/src/sys/sync/rwlock",
+          "file": "no_threads.rs",
           "language": 28,
           "lines": [
             [
@@ -38621,7 +38757,8 @@
           ]
         },
         {
-          "file": "library/core/src/panic/panic_info.rs",
+          "directory": "library/core/src/panic",
+          "file": "panic_info.rs",
           "language": 28,
           "lines": [
             [
@@ -38682,7 +38819,8 @@
           ]
         },
         {
-          "file": "library/std/src/../../backtrace/src/backtrace/mod.rs",
+          "directory": "library/std/src/../../backtrace/src/backtrace",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -38718,7 +38856,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/metadata.rs",
+          "directory": "library/core/src/ptr",
+          "file": "metadata.rs",
           "language": 28,
           "lines": [
             [
@@ -38734,7 +38873,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/error.rs",
+          "directory": "library/core/src/str",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -38745,7 +38885,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/pal/wasm/../unsupported/args.rs",
+          "directory": "library/std/src/sys/pal/wasm/../unsupported",
+          "file": "args.rs",
           "language": 28,
           "lines": [
             [
@@ -38771,7 +38912,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/iter.rs",
+          "directory": "library/core/src/slice",
+          "file": "iter.rs",
           "language": 28,
           "lines": [
             [
@@ -38787,7 +38929,8 @@
           ]
         },
         {
-          "file": "library/std/src/sys/net/connection/unsupported.rs",
+          "directory": "library/std/src/sys/net/connection",
+          "file": "unsupported.rs",
           "language": 28,
           "lines": [
             [
@@ -38814,7 +38957,8 @@
       "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb",
       "files": [
         {
-          "file": "library/panic_abort/src/lib.rs",
+          "directory": "library/panic_abort/src",
+          "file": "lib.rs",
           "language": 28,
           "lines": [
             [
@@ -38846,7 +38990,8 @@
       "directory": "/rust/deps/dlmalloc-0.2.7",
       "files": [
         {
-          "file": "src/wasm.rs",
+          "directory": "src",
+          "file": "wasm.rs",
           "language": 28,
           "lines": [
             [
@@ -38882,7 +39027,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/../../stdarch/crates/core_arch/src/wasm32/memory.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/../../stdarch/crates/core_arch/src/wasm32",
+          "file": "memory.rs",
           "language": 28,
           "lines": [
             [
@@ -38899,7 +39045,8 @@
       "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb",
       "files": [
         {
-          "file": "library/core/src/fmt/mod.rs",
+          "directory": "library/core/src/fmt",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -39070,7 +39217,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/num.rs",
+          "directory": "library/core/src/fmt",
+          "file": "num.rs",
           "language": 28,
           "lines": [
             [
@@ -39101,7 +39249,8 @@
           ]
         },
         {
-          "file": "library/core/src/option.rs",
+          "directory": "library/core/src",
+          "file": "option.rs",
           "language": 28,
           "lines": [
             [
@@ -39237,7 +39386,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/mod.rs",
+          "directory": "library/core/src/ptr",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -39523,7 +39673,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/raw_vec.rs",
+          "directory": "library/alloc/src",
+          "file": "raw_vec.rs",
           "language": 28,
           "lines": [
             [
@@ -41179,7 +41330,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/alloc.rs",
+          "directory": "library/alloc/src",
+          "file": "alloc.rs",
           "language": 28,
           "lines": [
             [
@@ -41480,7 +41632,8 @@
           ]
         },
         {
-          "file": "library/core/src/error.rs",
+          "directory": "library/core/src",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -41516,7 +41669,8 @@
           ]
         },
         {
-          "file": "library/core/src/any.rs",
+          "directory": "library/core/src",
+          "file": "any.rs",
           "language": 28,
           "lines": [
             [
@@ -41527,7 +41681,8 @@
           ]
         },
         {
-          "file": "library/core/src/panicking.rs",
+          "directory": "library/core/src",
+          "file": "panicking.rs",
           "language": 28,
           "lines": [
             [
@@ -41548,7 +41703,8 @@
           ]
         },
         {
-          "file": "library/core/src/alloc/layout.rs",
+          "directory": "library/core/src/alloc",
+          "file": "layout.rs",
           "language": 28,
           "lines": [
             [
@@ -41699,7 +41855,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/uint_macros.rs",
+          "directory": "library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -41955,7 +42112,8 @@
           ]
         },
         {
-          "file": "library/core/src/cmp.rs",
+          "directory": "library/core/src",
+          "file": "cmp.rs",
           "language": 28,
           "lines": [
             [
@@ -41991,7 +42149,8 @@
           ]
         },
         {
-          "file": "library/core/src/intrinsics/mod.rs",
+          "directory": "library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -42377,7 +42536,8 @@
           ]
         },
         {
-          "file": "library/core/src/result.rs",
+          "directory": "library/core/src",
+          "file": "result.rs",
           "language": 28,
           "lines": [
             [
@@ -42633,7 +42793,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/mod.rs",
+          "directory": "library/alloc/src/collections",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -42674,7 +42835,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/boxed/convert.rs",
+          "directory": "library/alloc/src/boxed",
+          "file": "convert.rs",
           "language": 28,
           "lines": [
             [
@@ -42735,7 +42897,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/vec/mod.rs",
+          "directory": "library/alloc/src/vec",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -43641,7 +43804,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/string.rs",
+          "directory": "library/alloc/src",
+          "file": "string.rs",
           "language": 28,
           "lines": [
             [
@@ -44532,7 +44696,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/boxed.rs",
+          "directory": "library/alloc/src",
+          "file": "boxed.rs",
           "language": 28,
           "lines": [
             [
@@ -44578,7 +44743,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/borrow.rs",
+          "directory": "library/alloc/src",
+          "file": "borrow.rs",
           "language": 28,
           "lines": [
             [
@@ -44789,7 +44955,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/mut_ptr.rs",
+          "directory": "library/core/src/ptr",
+          "file": "mut_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -45145,7 +45312,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/map.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "map.rs",
           "language": 28,
           "lines": [
             [
@@ -45171,7 +45339,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/collections/btree/mem.rs",
+          "directory": "library/alloc/src/collections/btree",
+          "file": "mem.rs",
           "language": 28,
           "lines": [
             [
@@ -45187,7 +45356,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/ffi/c_str.rs",
+          "directory": "library/alloc/src/ffi",
+          "file": "c_str.rs",
           "language": 28,
           "lines": [
             [
@@ -45518,7 +45688,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/memchr.rs",
+          "directory": "library/core/src/slice",
+          "file": "memchr.rs",
           "language": 28,
           "lines": [
             [
@@ -45689,7 +45860,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/non_null.rs",
+          "directory": "library/core/src/ptr",
+          "file": "non_null.rs",
           "language": 28,
           "lines": [
             [
@@ -45885,7 +46057,8 @@
           ]
         },
         {
-          "file": "library/core/src/ffi/c_str.rs",
+          "directory": "library/core/src/ffi",
+          "file": "c_str.rs",
           "language": 28,
           "lines": [
             [
@@ -45896,7 +46069,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/fmt.rs",
+          "directory": "library/alloc/src",
+          "file": "fmt.rs",
           "language": 28,
           "lines": [
             [
@@ -45922,7 +46096,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/iter/macros.rs",
+          "directory": "library/core/src/slice/iter",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -46113,7 +46288,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/accum.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "accum.rs",
           "language": 28,
           "lines": [
             [
@@ -46279,7 +46455,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/rc.rs",
+          "directory": "library/alloc/src",
+          "file": "rc.rs",
           "language": 28,
           "lines": [
             [
@@ -46300,7 +46477,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/alignment.rs",
+          "directory": "library/core/src/ptr",
+          "file": "alignment.rs",
           "language": 28,
           "lines": [
             [
@@ -46311,7 +46489,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/str.rs",
+          "directory": "library/alloc/src",
+          "file": "str.rs",
           "language": 28,
           "lines": [
             [
@@ -47072,7 +47251,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/range.rs",
+          "directory": "library/core/src/iter",
+          "file": "range.rs",
           "language": 28,
           "lines": [
             [
@@ -47088,7 +47268,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/mod.rs",
+          "directory": "library/core/src/num",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -47499,7 +47680,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/index.rs",
+          "directory": "library/core/src/slice",
+          "file": "index.rs",
           "language": 28,
           "lines": [
             [
@@ -47550,7 +47732,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/mod.rs",
+          "directory": "library/core/src/str",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -47601,7 +47784,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/validations.rs",
+          "directory": "library/core/src/str",
+          "file": "validations.rs",
           "language": 28,
           "lines": [
             [
@@ -47997,7 +48181,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/iter.rs",
+          "directory": "library/core/src/str",
+          "file": "iter.rs",
           "language": 28,
           "lines": [
             [
@@ -48043,7 +48228,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/traits.rs",
+          "directory": "library/core/src/str",
+          "file": "traits.rs",
           "language": 28,
           "lines": [
             [
@@ -48094,7 +48280,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/double_ended.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "double_ended.rs",
           "language": 28,
           "lines": [
             [
@@ -48120,7 +48307,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/skip_while.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "skip_while.rs",
           "language": 28,
           "lines": [
             [
@@ -48156,7 +48344,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/iterator.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "iterator.rs",
           "language": 28,
           "lines": [
             [
@@ -48182,7 +48371,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/methods.rs",
+          "directory": "library/core/src/char",
+          "file": "methods.rs",
           "language": 28,
           "lines": [
             [
@@ -50218,7 +50408,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/lossy.rs",
+          "directory": "library/core/src/str",
+          "file": "lossy.rs",
           "language": 28,
           "lines": [
             [
@@ -50229,7 +50420,8 @@
           ]
         },
         {
-          "file": "library/core/src/clone.rs",
+          "directory": "library/core/src",
+          "file": "clone.rs",
           "language": 28,
           "lines": [
             [
@@ -50260,7 +50452,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/decode.rs",
+          "directory": "library/core/src/char",
+          "file": "decode.rs",
           "language": 28,
           "lines": [
             [
@@ -50616,7 +50809,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/mod.rs",
+          "directory": "library/core/src/slice",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -50662,7 +50856,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/map.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "map.rs",
           "language": 28,
           "lines": [
             [
@@ -50693,7 +50888,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/const_ptr.rs",
+          "directory": "library/core/src/ptr",
+          "file": "const_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -50724,7 +50920,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/error.rs",
+          "directory": "library/core/src/str",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -50735,7 +50932,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/collect.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "collect.rs",
           "language": 28,
           "lines": [
             [
@@ -50746,7 +50944,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/pattern.rs",
+          "directory": "library/core/src/str",
+          "file": "pattern.rs",
           "language": 28,
           "lines": [
             [
@@ -50757,7 +50956,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/converts.rs",
+          "directory": "library/core/src/str",
+          "file": "converts.rs",
           "language": 28,
           "lines": [
             [
@@ -50773,7 +50973,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/vec/drain.rs",
+          "directory": "library/alloc/src/vec",
+          "file": "drain.rs",
           "language": 28,
           "lines": [
             [
@@ -50809,7 +51010,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/sync.rs",
+          "directory": "library/alloc/src",
+          "file": "sync.rs",
           "language": 28,
           "lines": [
             [
@@ -50830,7 +51032,8 @@
           ]
         },
         {
-          "file": "library/alloc/src/slice.rs",
+          "directory": "library/alloc/src",
+          "file": "slice.rs",
           "language": 28,
           "lines": [
             [
@@ -50847,7 +51050,8 @@
       "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb",
       "files": [
         {
-          "file": "library/core/src/num/dec2flt/decimal.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "decimal.rs",
           "language": 28,
           "lines": [
             [
@@ -52013,7 +52217,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/range.rs",
+          "directory": "library/core/src/iter",
+          "file": "range.rs",
           "language": 28,
           "lines": [
             [
@@ -52579,7 +52784,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/index.rs",
+          "directory": "library/core/src/slice",
+          "file": "index.rs",
           "language": 28,
           "lines": [
             [
@@ -54205,7 +54411,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/take.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "take.rs",
           "language": 28,
           "lines": [
             [
@@ -54216,7 +54423,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/iter/macros.rs",
+          "directory": "library/core/src/slice/iter",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -56397,7 +56605,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/mod.rs",
+          "directory": "library/core/src/slice",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -57108,7 +57317,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/common.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "common.rs",
           "language": 28,
           "lines": [
             [
@@ -57234,7 +57444,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/uint_macros.rs",
+          "directory": "library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -59965,7 +60176,8 @@
           ]
         },
         {
-          "file": "library/core/src/intrinsics/mod.rs",
+          "directory": "library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -60221,7 +60433,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/non_null.rs",
+          "directory": "library/core/src/ptr",
+          "file": "non_null.rs",
           "language": 28,
           "lines": [
             [
@@ -61137,7 +61350,8 @@
           ]
         },
         {
-          "file": "library/core/src/cmp.rs",
+          "directory": "library/core/src",
+          "file": "cmp.rs",
           "language": 28,
           "lines": [
             [
@@ -62268,7 +62482,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/float.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "float.rs",
           "language": 28,
           "lines": [
             [
@@ -62339,7 +62554,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/lemire.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "lemire.rs",
           "language": 28,
           "lines": [
             [
@@ -62775,7 +62991,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/int_macros.rs",
+          "directory": "library/core/src/num",
+          "file": "int_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -62901,7 +63118,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/parse.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "parse.rs",
           "language": 28,
           "lines": [
             [
@@ -63392,7 +63610,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/mod.rs",
+          "directory": "library/core/src/num",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -64708,7 +64927,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/mod.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -65009,7 +65229,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/mod.rs",
+          "directory": "library/core/src/fmt",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -68210,7 +68431,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/diy_float.rs",
+          "directory": "library/core/src/num",
+          "file": "diy_float.rs",
           "language": 28,
           "lines": [
             [
@@ -68751,7 +68973,8 @@
           ]
         },
         {
-          "file": "library/core/src/macros/mod.rs",
+          "directory": "library/core/src/macros",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -69362,7 +69585,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/flt2dec/estimator.rs",
+          "directory": "library/core/src/num/flt2dec",
+          "file": "estimator.rs",
           "language": 28,
           "lines": [
             [
@@ -69458,7 +69682,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/flt2dec/strategy/dragon.rs",
+          "directory": "library/core/src/num/flt2dec/strategy",
+          "file": "dragon.rs",
           "language": 28,
           "lines": [
             [
@@ -70149,7 +70374,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/bignum.rs",
+          "directory": "library/core/src/num",
+          "file": "bignum.rs",
           "language": 28,
           "lines": [
             [
@@ -74830,7 +75056,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/zip.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "zip.rs",
           "language": 28,
           "lines": [
             [
@@ -75366,7 +75593,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/mut_ptr.rs",
+          "directory": "library/core/src/ptr",
+          "file": "mut_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -75877,7 +76105,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/double_ended.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "double_ended.rs",
           "language": 28,
           "lines": [
             [
@@ -76098,7 +76327,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/control_flow.rs",
+          "directory": "library/core/src/ops",
+          "file": "control_flow.rs",
           "language": 28,
           "lines": [
             [
@@ -76294,7 +76524,8 @@
           ]
         },
         {
-          "file": "library/core/src/clone.rs",
+          "directory": "library/core/src",
+          "file": "clone.rs",
           "language": 28,
           "lines": [
             [
@@ -76510,7 +76741,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/flt2dec/mod.rs",
+          "directory": "library/core/src/num/flt2dec",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -77911,7 +78143,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/flt2dec/strategy/grisu.rs",
+          "directory": "library/core/src/num/flt2dec/strategy",
+          "file": "grisu.rs",
           "language": 28,
           "lines": [
             [
@@ -79292,7 +79525,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/fmt.rs",
+          "directory": "library/core/src/num",
+          "file": "fmt.rs",
           "language": 28,
           "lines": [
             [
@@ -79703,7 +79937,8 @@
           ]
         },
         {
-          "file": "library/core/src/option.rs",
+          "directory": "library/core/src",
+          "file": "option.rs",
           "language": 28,
           "lines": [
             [
@@ -80629,7 +80864,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/error.rs",
+          "directory": "library/core/src/num",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -80665,7 +80901,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/int_log10.rs",
+          "directory": "library/core/src/num",
+          "file": "int_log10.rs",
           "language": 28,
           "lines": [
             [
@@ -81076,7 +81313,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/int_sqrt.rs",
+          "directory": "library/core/src/num",
+          "file": "int_sqrt.rs",
           "language": 28,
           "lines": [
             [
@@ -81097,7 +81335,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/overflow_panic.rs",
+          "directory": "library/core/src/num",
+          "file": "overflow_panic.rs",
           "language": 28,
           "lines": [
             [
@@ -81118,7 +81357,8 @@
           ]
         },
         {
-          "file": "library/core/src/mem/transmutability.rs",
+          "directory": "library/core/src/mem",
+          "file": "transmutability.rs",
           "language": 28,
           "lines": [
             [
@@ -81149,7 +81389,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/alignment.rs",
+          "directory": "library/core/src/ptr",
+          "file": "alignment.rs",
           "language": 28,
           "lines": [
             [
@@ -81185,7 +81426,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/nonzero.rs",
+          "directory": "library/core/src/num",
+          "file": "nonzero.rs",
           "language": 28,
           "lines": [
             [
@@ -81376,7 +81618,8 @@
           ]
         },
         {
-          "file": "library/core/src/error.rs",
+          "directory": "library/core/src",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -81417,7 +81660,8 @@
           ]
         },
         {
-          "file": "library/core/src/result.rs",
+          "directory": "library/core/src",
+          "file": "result.rs",
           "language": 28,
           "lines": [
             [
@@ -82423,7 +82667,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/function.rs",
+          "directory": "library/core/src/ops",
+          "file": "function.rs",
           "language": 28,
           "lines": [
             [
@@ -82439,7 +82684,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/range.rs",
+          "directory": "library/core/src/ops",
+          "file": "range.rs",
           "language": 28,
           "lines": [
             [
@@ -82530,7 +82776,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/num.rs",
+          "directory": "library/core/src/fmt",
+          "file": "num.rs",
           "language": 28,
           "lines": [
             [
@@ -85351,7 +85598,8 @@
           ]
         },
         {
-          "file": "library/core/src/mem/maybe_uninit.rs",
+          "directory": "library/core/src/mem",
+          "file": "maybe_uninit.rs",
           "language": 28,
           "lines": [
             [
@@ -85807,7 +86055,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/arith.rs",
+          "directory": "library/core/src/ops",
+          "file": "arith.rs",
           "language": 28,
           "lines": [
             [
@@ -86233,7 +86482,8 @@
           ]
         },
         {
-          "file": "library/core/src/any.rs",
+          "directory": "library/core/src",
+          "file": "any.rs",
           "language": 28,
           "lines": [
             [
@@ -86279,7 +86529,8 @@
           ]
         },
         {
-          "file": "library/core/src/convert/num.rs",
+          "directory": "library/core/src/convert",
+          "file": "num.rs",
           "language": 28,
           "lines": [
             [
@@ -86325,7 +86576,8 @@
           ]
         },
         {
-          "file": "library/core/src/ascii/ascii_char.rs",
+          "directory": "library/core/src/ascii",
+          "file": "ascii_char.rs",
           "language": 28,
           "lines": [
             [
@@ -86411,7 +86663,8 @@
           ]
         },
         {
-          "file": "library/core/src/ascii.rs",
+          "directory": "library/core/src",
+          "file": "ascii.rs",
           "language": 28,
           "lines": [
             [
@@ -86467,7 +86720,8 @@
           ]
         },
         {
-          "file": "library/core/src/escape.rs",
+          "directory": "library/core/src",
+          "file": "escape.rs",
           "language": 28,
           "lines": [
             [
@@ -87878,7 +88132,8 @@
           ]
         },
         {
-          "file": "library/core/src/bstr.rs",
+          "directory": "library/core/src",
+          "file": "bstr.rs",
           "language": 28,
           "lines": [
             [
@@ -88089,7 +88344,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/validations.rs",
+          "directory": "library/core/src/str",
+          "file": "validations.rs",
           "language": 28,
           "lines": [
             [
@@ -89760,7 +90016,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/methods.rs",
+          "directory": "library/core/src/char",
+          "file": "methods.rs",
           "language": 28,
           "lines": [
             [
@@ -90731,7 +90988,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/ascii.rs",
+          "directory": "library/core/src/slice",
+          "file": "ascii.rs",
           "language": 28,
           "lines": [
             [
@@ -90872,7 +91130,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/map.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "map.rs",
           "language": 28,
           "lines": [
             [
@@ -90893,7 +91152,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/iterator.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "iterator.rs",
           "language": 28,
           "lines": [
             [
@@ -91144,7 +91404,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/traits/accum.rs",
+          "directory": "library/core/src/iter/traits",
+          "file": "accum.rs",
           "language": 28,
           "lines": [
             [
@@ -91315,7 +91576,8 @@
           ]
         },
         {
-          "file": "library/core/src/cell/lazy.rs",
+          "directory": "library/core/src/cell",
+          "file": "lazy.rs",
           "language": 28,
           "lines": [
             [
@@ -91336,7 +91598,8 @@
           ]
         },
         {
-          "file": "library/core/src/cell.rs",
+          "directory": "library/core/src",
+          "file": "cell.rs",
           "language": 28,
           "lines": [
             [
@@ -91382,7 +91645,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/convert.rs",
+          "directory": "library/core/src/char",
+          "file": "convert.rs",
           "language": 28,
           "lines": [
             [
@@ -91433,7 +91697,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/decode.rs",
+          "directory": "library/core/src/char",
+          "file": "decode.rs",
           "language": 28,
           "lines": [
             [
@@ -91454,7 +91719,8 @@
           ]
         },
         {
-          "file": "library/core/src/unicode/unicode_data.rs",
+          "directory": "library/core/src/unicode",
+          "file": "unicode_data.rs",
           "language": 28,
           "lines": [
             [
@@ -91840,7 +92106,8 @@
           ]
         },
         {
-          "file": "library/core/src/char/mod.rs",
+          "directory": "library/core/src/char",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -92351,7 +92618,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/index_range.rs",
+          "directory": "library/core/src/ops",
+          "file": "index_range.rs",
           "language": 28,
           "lines": [
             [
@@ -92472,7 +92740,8 @@
           ]
         },
         {
-          "file": "library/core/src/array/iter.rs",
+          "directory": "library/core/src/array",
+          "file": "iter.rs",
           "language": 28,
           "lines": [
             [
@@ -92523,7 +92792,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/mod.rs",
+          "directory": "library/core/src/ptr",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -92659,7 +92929,8 @@
           ]
         },
         {
-          "file": "library/core/src/ffi/c_str.rs",
+          "directory": "library/core/src/ffi",
+          "file": "c_str.rs",
           "language": 28,
           "lines": [
             [
@@ -92795,7 +93066,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/memchr.rs",
+          "directory": "library/core/src/slice",
+          "file": "memchr.rs",
           "language": 28,
           "lines": [
             [
@@ -93491,7 +93763,8 @@
           ]
         },
         {
-          "file": "library/core/src/ptr/const_ptr.rs",
+          "directory": "library/core/src/ptr",
+          "file": "const_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -93732,7 +94005,8 @@
           ]
         },
         {
-          "file": "library/core/src/ffi/va_list.rs",
+          "directory": "library/core/src/ffi",
+          "file": "va_list.rs",
           "language": 28,
           "lines": [
             [
@@ -93753,7 +94027,8 @@
           ]
         },
         {
-          "file": "library/core/src/ffi/mod.rs",
+          "directory": "library/core/src/ffi",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -93769,7 +94044,8 @@
           ]
         },
         {
-          "file": "library/core/src/io/borrowed_buf.rs",
+          "directory": "library/core/src/io",
+          "file": "borrowed_buf.rs",
           "language": 28,
           "lines": [
             [
@@ -93825,7 +94101,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/builders.rs",
+          "directory": "library/core/src/fmt",
+          "file": "builders.rs",
           "language": 28,
           "lines": [
             [
@@ -95236,7 +95513,8 @@
           ]
         },
         {
-          "file": "library/core/src/net/display_buffer.rs",
+          "directory": "library/core/src/net",
+          "file": "display_buffer.rs",
           "language": 28,
           "lines": [
             [
@@ -95332,7 +95610,8 @@
           ]
         },
         {
-          "file": "library/core/src/net/ip_addr.rs",
+          "directory": "library/core/src/net",
+          "file": "ip_addr.rs",
           "language": 28,
           "lines": [
             [
@@ -95858,7 +96137,8 @@
           ]
         },
         {
-          "file": "library/core/src/net/parser.rs",
+          "directory": "library/core/src/net",
+          "file": "parser.rs",
           "language": 28,
           "lines": [
             [
@@ -97234,7 +97514,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/enumerate.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "enumerate.rs",
           "language": 28,
           "lines": [
             [
@@ -97265,7 +97546,8 @@
           ]
         },
         {
-          "file": "library/core/src/net/socket_addr.rs",
+          "directory": "library/core/src/net",
+          "file": "socket_addr.rs",
           "language": 28,
           "lines": [
             [
@@ -97466,7 +97748,8 @@
           ]
         },
         {
-          "file": "library/core/src/panicking.rs",
+          "directory": "library/core/src",
+          "file": "panicking.rs",
           "language": 28,
           "lines": [
             [
@@ -97767,7 +98050,8 @@
           ]
         },
         {
-          "file": "library/core/src/panic/panic_info.rs",
+          "directory": "library/core/src/panic",
+          "file": "panic_info.rs",
           "language": 28,
           "lines": [
             [
@@ -97808,7 +98092,8 @@
           ]
         },
         {
-          "file": "library/core/src/sync/atomic.rs",
+          "directory": "library/core/src/sync",
+          "file": "atomic.rs",
           "language": 28,
           "lines": [
             [
@@ -97894,7 +98179,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/iter.rs",
+          "directory": "library/core/src/str",
+          "file": "iter.rs",
           "language": 28,
           "lines": [
             [
@@ -97990,7 +98276,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/pattern.rs",
+          "directory": "library/core/src/str",
+          "file": "pattern.rs",
           "language": 28,
           "lines": [
             [
@@ -98476,7 +98763,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/cmp.rs",
+          "directory": "library/core/src/slice",
+          "file": "cmp.rs",
           "language": 28,
           "lines": [
             [
@@ -98507,7 +98795,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/float.rs",
+          "directory": "library/core/src/fmt",
+          "file": "float.rs",
           "language": 28,
           "lines": [
             [
@@ -98793,7 +99082,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/f32.rs",
+          "directory": "library/core/src/num",
+          "file": "f32.rs",
           "language": 28,
           "lines": [
             [
@@ -98889,7 +99179,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/flt2dec/decoder.rs",
+          "directory": "library/core/src/num/flt2dec",
+          "file": "decoder.rs",
           "language": 28,
           "lines": [
             [
@@ -98975,7 +99266,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/f64.rs",
+          "directory": "library/core/src/num",
+          "file": "f64.rs",
           "language": 28,
           "lines": [
             [
@@ -99076,7 +99368,8 @@
           ]
         },
         {
-          "file": "library/core/src/fmt/rt.rs",
+          "directory": "library/core/src/fmt",
+          "file": "rt.rs",
           "language": 28,
           "lines": [
             [
@@ -99137,7 +99430,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/count.rs",
+          "directory": "library/core/src/str",
+          "file": "count.rs",
           "language": 28,
           "lines": [
             [
@@ -99468,7 +99762,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/mod.rs",
+          "directory": "library/core/src/str",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -99884,7 +100179,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/traits.rs",
+          "directory": "library/core/src/str",
+          "file": "traits.rs",
           "language": 28,
           "lines": [
             [
@@ -100085,7 +100381,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/sort/stable/drift.rs",
+          "directory": "library/core/src/slice/sort/stable",
+          "file": "drift.rs",
           "language": 28,
           "lines": [
             [
@@ -100131,7 +100428,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/sort/shared/smallsort.rs",
+          "directory": "library/core/src/slice/sort/shared",
+          "file": "smallsort.rs",
           "language": 28,
           "lines": [
             [
@@ -100152,7 +100450,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/flatten.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "flatten.rs",
           "language": 28,
           "lines": [
             [
@@ -100348,7 +100647,8 @@
           ]
         },
         {
-          "file": "library/core/src/array/mod.rs",
+          "directory": "library/core/src/array",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -100364,7 +100664,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/converts.rs",
+          "directory": "library/core/src/str",
+          "file": "converts.rs",
           "language": 28,
           "lines": [
             [
@@ -100430,7 +100731,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/error.rs",
+          "directory": "library/core/src/str",
+          "file": "error.rs",
           "language": 28,
           "lines": [
             [
@@ -100481,7 +100783,8 @@
           ]
         },
         {
-          "file": "library/core/src/slice/iter.rs",
+          "directory": "library/core/src/slice",
+          "file": "iter.rs",
           "language": 28,
           "lines": [
             [
@@ -100502,7 +100805,8 @@
           ]
         },
         {
-          "file": "library/core/src/str/lossy.rs",
+          "directory": "library/core/src/str",
+          "file": "lossy.rs",
           "language": 28,
           "lines": [
             [
@@ -100838,7 +101142,8 @@
           ]
         },
         {
-          "file": "library/core/src/time.rs",
+          "directory": "library/core/src",
+          "file": "time.rs",
           "language": 28,
           "lines": [
             [
@@ -101504,7 +101809,8 @@
           ]
         },
         {
-          "file": "library/core/src/unicode/printable.rs",
+          "directory": "library/core/src/unicode",
+          "file": "printable.rs",
           "language": 28,
           "lines": [
             [
@@ -101675,7 +101981,8 @@
           ]
         },
         {
-          "file": "library/core/src/task/wake.rs",
+          "directory": "library/core/src/task",
+          "file": "wake.rs",
           "language": 28,
           "lines": [
             [
@@ -101731,7 +102038,8 @@
           ]
         },
         {
-          "file": "library/core/src/alloc/layout.rs",
+          "directory": "library/core/src/alloc",
+          "file": "layout.rs",
           "language": 28,
           "lines": [
             [
@@ -101772,7 +102080,8 @@
           ]
         },
         {
-          "file": "library/core/src/alloc/mod.rs",
+          "directory": "library/core/src/alloc",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -101788,7 +102097,8 @@
           ]
         },
         {
-          "file": "library/core/src/panic.rs",
+          "directory": "library/core/src",
+          "file": "panic.rs",
           "language": 28,
           "lines": [
             [
@@ -101864,7 +102174,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/number.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "number.rs",
           "language": 28,
           "lines": [
             [
@@ -101965,7 +102276,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/dec2flt/slow.rs",
+          "directory": "library/core/src/num/dec2flt",
+          "file": "slow.rs",
           "language": 28,
           "lines": [
             [
@@ -102356,7 +102668,8 @@
           ]
         },
         {
-          "file": "library/core/src/num/niche_types.rs",
+          "directory": "library/core/src/num",
+          "file": "niche_types.rs",
           "language": 28,
           "lines": [
             [
@@ -102447,7 +102760,8 @@
           ]
         },
         {
-          "file": "library/core/src/marker/variance.rs",
+          "directory": "library/core/src/marker",
+          "file": "variance.rs",
           "language": 28,
           "lines": [
             [
@@ -102463,7 +102777,8 @@
           ]
         },
         {
-          "file": "library/core/src/ops/bit.rs",
+          "directory": "library/core/src/ops",
+          "file": "bit.rs",
           "language": 28,
           "lines": [
             [
@@ -102554,7 +102869,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/chain.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "chain.rs",
           "language": 28,
           "lines": [
             [
@@ -102580,7 +102896,8 @@
           ]
         },
         {
-          "file": "library/core/src/iter/adapters/fuse.rs",
+          "directory": "library/core/src/iter/adapters",
+          "file": "fuse.rs",
           "language": 28,
           "lines": [
             [
@@ -102606,7 +102923,8 @@
           ]
         },
         {
-          "file": "library/core/src/bool.rs",
+          "directory": "library/core/src",
+          "file": "bool.rs",
           "language": 28,
           "lines": [
             [
@@ -102758,7 +103076,8 @@
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -102889,7 +103208,8 @@
           ]
         },
         {
-          "file": "src/mem/impls.rs",
+          "directory": "src/mem",
+          "file": "impls.rs",
           "language": 28,
           "lines": [
             [
@@ -103980,7 +104300,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -104001,7 +104322,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr/mut_ptr.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr",
+          "file": "mut_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -104417,7 +104739,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr/const_ptr.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr",
+          "file": "const_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -104758,7 +105081,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics/mod.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -104789,7 +105113,8 @@
           ]
         },
         {
-          "file": "src/mem/mod.rs",
+          "directory": "src/mem",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -105415,7 +105740,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/int_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "int_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -105432,7 +105758,8 @@
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -105459,7 +105786,8 @@
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -105480,7 +105808,8 @@
           ]
         },
         {
-          "file": "src/int/shift.rs",
+          "directory": "src/int",
+          "file": "shift.rs",
           "language": 28,
           "lines": [
             [
@@ -105496,7 +105825,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -105547,7 +105877,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ops/bit.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ops",
+          "file": "bit.rs",
           "language": 28,
           "lines": [
             [
@@ -105560,16 +105891,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.024",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.006",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/int/specialized_div_rem/trifecta.rs",
+          "directory": "src/int/specialized_div_rem",
+          "file": "trifecta.rs",
           "language": 28,
           "lines": [
             [
@@ -105910,7 +106237,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -106271,7 +106599,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics/mod.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -106287,7 +106616,8 @@
           ]
         },
         {
-          "file": "src/int/specialized_div_rem/delegate.rs",
+          "directory": "src/int/specialized_div_rem",
+          "file": "delegate.rs",
           "language": 28,
           "lines": [
             [
@@ -106653,7 +106983,8 @@
           ]
         },
         {
-          "file": "src/int/specialized_div_rem/norm_shift.rs",
+          "directory": "src/int/specialized_div_rem",
+          "file": "norm_shift.rs",
           "language": 28,
           "lines": [
             [
@@ -106679,7 +107010,8 @@
           ]
         },
         {
-          "file": "src/int/specialized_div_rem/binary_long.rs",
+          "directory": "src/int/specialized_div_rem",
+          "file": "binary_long.rs",
           "language": 28,
           "lines": [
             [
@@ -106836,7 +107168,8 @@
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -106857,7 +107190,8 @@
           ]
         },
         {
-          "file": "src/int/udiv.rs",
+          "directory": "src/int",
+          "file": "udiv.rs",
           "language": 28,
           "lines": [
             [
@@ -106870,16 +107204,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.072",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.163",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -106900,7 +107230,8 @@
           ]
         },
         {
-          "file": "src/int/shift.rs",
+          "directory": "src/int",
+          "file": "shift.rs",
           "language": 28,
           "lines": [
             [
@@ -106916,7 +107247,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -106962,7 +107294,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ops/bit.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ops",
+          "file": "bit.rs",
           "language": 28,
           "lines": [
             [
@@ -106975,16 +107308,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.024",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.207",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107005,7 +107334,8 @@
           ]
         },
         {
-          "file": "src/mem/impls.rs",
+          "directory": "src/mem",
+          "file": "impls.rs",
           "language": 28,
           "lines": [
             [
@@ -107346,7 +107676,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107357,7 +107688,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr/mut_ptr.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr",
+          "file": "mut_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -107478,7 +107810,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr/const_ptr.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr",
+          "file": "const_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -107584,7 +107917,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics/mod.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -107602,16 +107936,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.005",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.252",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107632,7 +107962,8 @@
           ]
         },
         {
-          "file": "src/int/udiv.rs",
+          "directory": "src/int",
+          "file": "udiv.rs",
           "language": 28,
           "lines": [
             [
@@ -107645,16 +107976,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.072",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.271",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/mem/impls.rs",
+          "directory": "src/mem",
+          "file": "impls.rs",
           "language": 28,
           "lines": [
             [
@@ -107680,7 +108007,8 @@
           ]
         },
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107703,16 +108031,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.005",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.272",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107738,7 +108062,8 @@
           ]
         },
         {
-          "file": "src/int/mod.rs",
+          "directory": "src/int",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -107764,7 +108089,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/int_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "int_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107815,7 +108141,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ops/bit.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ops",
+          "file": "bit.rs",
           "language": 28,
           "lines": [
             [
@@ -107833,21 +108160,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.013",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.030",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.274",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107868,7 +108186,8 @@
           ]
         },
         {
-          "file": "src/mem/impls.rs",
+          "directory": "src/mem",
+          "file": "impls.rs",
           "language": 28,
           "lines": [
             [
@@ -107911,16 +108230,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.005",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.288",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -107941,7 +108256,8 @@
           ]
         },
         {
-          "file": "src/mem/impls.rs",
+          "directory": "src/mem",
+          "file": "impls.rs",
           "language": 28,
           "lines": [
             [
@@ -108122,7 +108438,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics/mod.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/intrinsics",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -108133,7 +108450,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -108144,7 +108462,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr/mut_ptr.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/ptr",
+          "file": "mut_ptr.rs",
           "language": 28,
           "lines": [
             [
@@ -108262,16 +108581,12 @@
       ]
     },
     {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.005",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
-    },
-    {
       "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.306",
       "directory": "/rust/deps/compiler_builtins-0.1.146",
       "files": [
         {
-          "file": "src/macros.rs",
+          "directory": "src",
+          "file": "macros.rs",
           "language": 28,
           "lines": [
             [
@@ -108292,7 +108607,8 @@
           ]
         },
         {
-          "file": "src/int/mul.rs",
+          "directory": "src/int",
+          "file": "mul.rs",
           "language": 28,
           "lines": [
             [
@@ -108393,7 +108709,8 @@
           ]
         },
         {
-          "file": "src/int/mod.rs",
+          "directory": "src/int",
+          "file": "mod.rs",
           "language": 28,
           "lines": [
             [
@@ -108414,7 +108731,8 @@
           ]
         },
         {
-          "file": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num/uint_macros.rs",
+          "directory": "/rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/num",
+          "file": "uint_macros.rs",
           "language": 28,
           "lines": [
             [
@@ -108500,11 +108818,6 @@
           ]
         }
       ]
-    },
-    {
-      "name": "/rust/deps/compiler_builtins-0.1.146/src/lib.rs/@/compiler_builtins.2722aae64755bb32-cgu.013",
-      "directory": "/rust/deps/compiler_builtins-0.1.146",
-      "files": []
     }
   ]
 }

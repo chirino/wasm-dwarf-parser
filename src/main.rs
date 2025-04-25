@@ -3,16 +3,13 @@
 // found in the LICENSE file.
 
 mod apperror;
-mod path;
 mod wasm;
 
 use apperror::Error;
 use fallible_iterator::FallibleIterator;
 use gimli::{constants, ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, ReaderOffset};
 use indexmap::IndexMap;
-use path::Path;
 use serde::{Deserialize, Serialize};
-use std::borrow::Cow;
 use std::collections::HashMap;
 use std::convert::TryInto;
 use std::io::Read;
@@ -31,6 +28,8 @@ enum FuncState {
 
 #[derive(Default, Serialize, Deserialize, PartialEq, Debug, Clone)]
 pub struct SourceFile {
+  #[serde(skip_serializing_if = "Option::is_none")]
+  directory: Option<String>,
   file: String,
   language: u16,
   lines: Vec<Vec<u64>>,
@@ -110,7 +109,7 @@ pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<Source
     let is_rust = lang == constants::DW_LANG_Rust.0;
 
     let mut source_unit = SourceUnit::default();
-    let mut locations_by_filename: IndexMap<String, SourceFile> = IndexMap::new();
+    let mut locations_by_filename: IndexMap<(Option<String>, String), SourceFile> = IndexMap::new();
 
     source_unit.name = unit
       .name
@@ -176,23 +175,25 @@ pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<Source
       };
 
       let addr: u64 = row.address().try_into().unwrap();
-      let mut path = Path::new(Cow::from("."));
 
-      let dir_value;
-      if let Some(dir) = file.directory(header) {
-        dir_value = dwarf.attr_string(&unit, dir)?;
-        path = Path::new(Cow::from(dir_value.to_string()?));
-      }
+      let directory = if let Some(dir) = file.directory(header) {
+        let dir = dwarf.attr_string(&unit, dir)?;
+        let dir = dir.to_string()?;
+        let dir = dir.to_string();
+        Some(dir)
+      } else {
+        None
+      };
 
-      let path_name_value = dwarf.attr_string(&unit, file.path_name())?;
-      path.push(path_name_value.to_string()?);
+      let filename = dwarf.attr_string(&unit, file.path_name())?;
+      let filename = filename.to_string()?;
+      let filename = filename.to_string();
 
-      let dest = path.to_string();
-
-      let file_entries = match locations_by_filename.entry(dest.clone()) {
+      let file_entries = match locations_by_filename.entry((directory.clone(), filename.clone())) {
         indexmap::map::Entry::Occupied(entry) => entry.into_mut(),
         indexmap::map::Entry::Vacant(entry) => entry.insert(SourceFile {
-          file: dest.to_string(),
+          directory: directory,
+          file: filename.to_string(),
           language: lang,
           lines: Vec::new(),
         }),
