@@ -215,7 +215,9 @@ pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<Source
       entries.dedup_by_key(|loc| loc[0]);
     }
     source_unit.files = locations_by_filename.values().cloned().collect();
-    res.push(source_unit);
+    if !source_unit.files.is_empty() {
+      res.push(source_unit);
+    }
   }
   Ok(SourceResult {
     units: Some(res),
