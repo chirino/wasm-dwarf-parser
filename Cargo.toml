@@ -7,7 +7,6 @@ edition = "2018"
 publish = false
 readme = "README"
 repository = "https://github.com/chirino/wasm-source-map"
-license-file = "LICENSE"
 license = "BSD-style"
 
 [dependencies]

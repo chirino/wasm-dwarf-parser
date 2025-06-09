@@ -11,7 +11,7 @@ use std::num::NonZeroU8;
 #[derive(Debug)]
 pub enum SectionKind {
   Custom { name: String },
-  Standard { id: NonZeroU8 },
+  Standard,
 }
 
 #[derive(Debug)]
@@ -53,7 +53,7 @@ pub fn parse_sections<R: Reader>(
             name: name_reader.to_string()?.into_owned(),
           }
         }
-        Some(id) => SectionKind::Standard { id },
+        Some(_) => SectionKind::Standard,
       };
 
       Ok(Some(Section {

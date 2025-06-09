@@ -7,7 +7,7 @@ mod wasm;
 
 use apperror::Error;
 use fallible_iterator::FallibleIterator;
-use gimli::{constants, ColumnType, Dwarf, EndianSlice, LittleEndian, Reader, ReaderOffset};
+use gimli::{constants, ColumnType, Dwarf, EndianSlice, LittleEndian, Reader};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -51,7 +51,6 @@ pub struct SourceResult {
 }
 
 pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<SourceResult, Error> {
-  let mut code_section_offset = None;
   let mut sections = HashMap::new();
 
   for section in parse_sections(src.clone())?.iterator() {
@@ -63,18 +62,9 @@ pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<Source
           sections.insert(name, section.payload);
         }
       }
-      SectionKind::Standard { id } if id.get() == 10 => {
-        code_section_offset = Some(section.payload.offset_from(&src));
-      }
       _ => {}
     }
   }
-
-  let code_section_offset: u64 = code_section_offset
-    .ok_or_else(|| Error::MissingCodeSection)?
-    .into_u64()
-    .try_into()
-    .unwrap();
 
   let dwarf = Dwarf::load::<_, _, Error>(
     |id| Ok(sections.get(id.name()).cloned().unwrap_or_default()),
@@ -176,6 +166,13 @@ pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<Source
 
       let addr: u64 = row.address().try_into().unwrap();
 
+      // Filter out synthetic/relocated addresses that are too high to be realistic WASM code offsets
+      // Most WASM modules are much smaller than 1GB, so addresses > 0x40000000 are likely synthetic
+      const MAX_REALISTIC_WASM_ADDR: u64 = 0x40000000; // 1GB threshold
+      if addr > MAX_REALISTIC_WASM_ADDR {
+        continue;
+      }
+
       let directory = if let Some(dir) = file.directory(header) {
         let dir = dwarf.attr_string(&unit, dir)?;
         let dir = dir.to_string()?;
@@ -200,7 +197,7 @@ pub fn extract_soruce_info<R: Reader + Clone + Default>(src: R) -> Result<Source
       };
 
       file_entries.lines.push(vec![
-        code_section_offset + addr,
+        addr,
         pos.line as u64,
         pos.column as u64,
       ]);
