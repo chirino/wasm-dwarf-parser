@@ -7,7 +7,7 @@ mod wasm;
 
 use apperror::Error;
 use fallible_iterator::FallibleIterator;
-use gimli::{Dwarf, EndianSlice, LineRow, LittleEndian, Reader};
+use gimli::{constants, Dwarf, EndianSlice, LineRow, LittleEndian, Reader};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -38,7 +38,7 @@ pub struct Line {
 
 #[derive(Default, Debug, Clone)]
 pub struct ScoredSourceFile {
-  id : u32,
+  id: u32,
   directory: Option<String>,
   file: String,
   language: u16,
@@ -54,7 +54,7 @@ pub struct ScoredSourceUnit {
 
 #[derive(Default, Serialize, Deserialize, PartialEq, Debug, Clone)]
 pub struct SourceFile {
-  id : u32,
+  id: u32,
   #[serde(skip_serializing_if = "Option::is_none")]
   directory: Option<String>,
   file: String,
@@ -127,7 +127,6 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
       }
     };
 
-
     let mut scored_source_files: IndexMap<(Option<String>, String), ScoredSourceFile> =
       IndexMap::new();
 
@@ -152,32 +151,24 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
       // if row.end_sequence() {
       //   func_state = FuncState::Start;
       // }
-      
+
       let file = match row.file(header) {
         Some(file) => file,
         None => continue,
       };
 
       let pos = {
-        let line = match row.line() {
+        let mut line = match row.line() {
           Some(line) => line.checked_sub(1).unwrap().try_into().unwrap(),
           None => continue, // couldn't attribute instruction to any line
         };
 
-        // let is_rust = lang == constants::DW_LANG_Rust.0;
-        // let column = match row.column() {
-        //   ColumnType::Column(mut column) => {
-        //     // DWARF columns are 1-based, Source Map are 0-based.
-        //     column -= 1;
-        //     // ...but Rust doesn't implement DWARF columns correctly
-        //     // (see https://github.com/rust-lang/rust/issues/65437)
-        //     if is_rust {
-        //       column += 1;
-        //     }
-        //     column.try_into().unwrap()
-        //   }
-        //   ColumnType::LeftEdge => 0,
-        // };
+        // It seems we need to add 1 to the line numbers for Rust.
+        let is_rust = lang == constants::DW_LANG_Rust.0;
+        if is_rust {
+          line += 1;
+        }
+
         Pos { line }
       };
 
@@ -217,7 +208,7 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
           });
           next_file_id += 1;
           source_file
-        },
+        }
       };
 
       let line = Line {
@@ -238,8 +229,6 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
       } else {
         best_scores.insert(line.address, line);
       }
-
-
     }
 
     let source_unit = ScoredSourceUnit {
@@ -264,7 +253,7 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
     }
   }
 
-  // Iterate through the source units and their files to and remove any 
+  // Iterate through the source units and their files to and remove any
   // files that don't have any lines in the best_scores map.
   for unit in &mut scored_source_units {
     for file in &mut unit.files {
@@ -279,20 +268,30 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
     unit.files.retain(|file| !file.lines.is_empty());
   }
   scored_source_units.retain(|unit| !unit.files.is_empty());
-  
-  // convert the scored source units to the final format
-  let res: Vec<SourceUnit> = scored_source_units.into_iter().map(|unit| SourceUnit {
-    name: unit.name,
-    directory: unit.directory,
-    files: unit.files.into_iter().map(|file| SourceFile {
-      id: file.id,
-      directory: file.directory,
-      file: file.file,
-      language: file.language,
-    }).collect(),
-  }).collect();
 
-  let mut lines : Vec<Vec<u64>> = best_scores.values().map(|line| vec![line.address, line.file_id as u64, line.line as u64]).collect();
+  // convert the scored source units to the final format
+  let res: Vec<SourceUnit> = scored_source_units
+    .into_iter()
+    .map(|unit| SourceUnit {
+      name: unit.name,
+      directory: unit.directory,
+      files: unit
+        .files
+        .into_iter()
+        .map(|file| SourceFile {
+          id: file.id,
+          directory: file.directory,
+          file: file.file,
+          language: file.language,
+        })
+        .collect(),
+    })
+    .collect();
+
+  let mut lines: Vec<Vec<u64>> = best_scores
+    .values()
+    .map(|line| vec![line.address, line.file_id as u64, line.line as u64])
+    .collect();
   lines.sort_by_key(|line| line[0]);
 
   Ok(SourceResult {
@@ -393,7 +392,7 @@ fn main() {
     let error_doc = SourceResult {
       error: Some(err.to_string()),
       units: None,
-        lines: None,
+      lines: None,
     };
     serde_json::to_writer(std::io::stdout(), &error_doc).unwrap_or_else(|err| {
       eprintln!("Error: {}", err);
