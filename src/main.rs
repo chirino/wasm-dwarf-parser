@@ -10,7 +10,7 @@ use fallible_iterator::FallibleIterator;
 use gimli::{constants, Dwarf, EndianSlice, LineRow, LittleEndian, Reader};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
 use std::convert::TryInto;
 use std::io::Read;
 use wasm::{parse_sections, SectionKind};
@@ -75,6 +75,9 @@ pub struct SourceResult {
   lines: Option<Vec<Vec<u64>>>,
 
   #[serde(skip_serializing_if = "Option::is_none")]
+  functions: Option<BTreeMap<String, Vec<u64>>>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
   error: Option<String>,
 }
 
@@ -105,6 +108,7 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
   let mut best_scores: HashMap<u64, Line> = HashMap::new();
   let mut next_entry_id = 0u64;
   let mut next_file_id = 0u32;
+  let mut functions: BTreeMap<String, Vec<u64>> = BTreeMap::new();
 
   while let Some(unit) = iter.next()? {
     let mut unit = dwarf.unit(unit)?;
@@ -126,6 +130,69 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
         _ => 0,
       }
     };
+
+    // Extract function information from DWARF entries
+    {
+      let mut entries = unit.entries();
+      while let Some((_depth, entry)) = entries.next_dfs()? {
+        if entry.tag() == gimli::DW_TAG_subprogram {
+          // Get function name
+          let func_name = if let Some(attr) = entry.attr_value(gimli::DW_AT_name)? {
+            match attr {
+              gimli::AttributeValue::DebugStrRef(offset) => {
+                match dwarf.debug_str.get_str(offset) {
+                  Ok(name_str) => Some(name_str.to_string()?.to_string()),
+                  Err(_) => None,
+                }
+              }
+              gimli::AttributeValue::String(name_str) => {
+                Some(name_str.to_string()?.to_string())
+              }
+              _ => None,
+            }
+          } else {
+            None
+          };
+          
+
+          // Get low_pc (start address) and high_pc (end address or size)
+          let low_pc = if let Some(attr) = entry.attr_value(gimli::DW_AT_low_pc)? {
+            match attr {
+              gimli::AttributeValue::Addr(addr) => Some(addr),
+              _ => None,
+            }
+          } else {
+            None
+          };
+
+          let high_pc = if let Some(attr) = entry.attr_value(gimli::DW_AT_high_pc)? {
+            match attr {
+              gimli::AttributeValue::Addr(addr) => Some(addr),
+              gimli::AttributeValue::Udata(offset) => {
+                // high_pc can be an offset from low_pc
+                if let Some(low) = low_pc {
+                  Some(low + offset)
+                } else {
+                  None
+                }
+              }
+              _ => None,
+            }
+          } else {
+            None
+          };
+
+          // If we have all the information, add it to our functions map
+          if let (Some(func_name), Some(start), Some(end)) = (func_name, low_pc, high_pc) {
+            // Filter out synthetic/relocated addresses similar to line processing
+            const MAX_REALISTIC_WASM_ADDR: u64 = 0x40000000; // 1GB threshold
+            if start <= MAX_REALISTIC_WASM_ADDR && end <= MAX_REALISTIC_WASM_ADDR && start < end {
+              functions.insert(func_name, vec![start, end]);
+            }
+          }
+        }
+      }
+    }
 
     let mut scored_source_files: IndexMap<(Option<String>, String), ScoredSourceFile> =
       IndexMap::new();
@@ -297,6 +364,7 @@ pub fn extract_source_info<R: Reader + Clone + Default>(src: R) -> Result<Source
   Ok(SourceResult {
     units: Some(res),
     lines: Some(lines),
+    functions: if functions.is_empty() { None } else { Some(functions) },
     error: None,
   })
 }
@@ -393,6 +461,7 @@ fn main() {
       error: Some(err.to_string()),
       units: None,
       lines: None,
+      functions: None,
     };
     serde_json::to_writer(std::io::stdout(), &error_doc).unwrap_or_else(|err| {
       eprintln!("Error: {}", err);
@@ -409,23 +478,23 @@ mod tests {
   #[test]
   pub fn test_parse() {
     // read a file in
-    let src = std::fs::read("./src/count_vowels.rs.wasm").expect("could not read wasm file");
+    let src = std::fs::read("./src/count_vowels.wasm").expect("could not read wasm file");
     let actual = extract_source_info(EndianSlice::new(src.as_slice(), LittleEndian))
       .expect("extract_soruce_info failed");
 
     // Optionally write the expected test data when REGENERATE_TEST_DATA env var is set
     if std::env::var("REGENERATE_TEST_DATA").is_ok() {
       std::fs::write(
-        "./src/count_vowels.rs.wasm.json",
+        "./src/count_vowels.wasm.json",
         serde_json::to_string_pretty(&actual).expect("json failed"),
       )
       .unwrap();
-      println!("Regenerated test data in ./src/count_vowels.rs.wasm.json");
+      println!("Regenerated test data in ./src/count_vowels.wasm.json");
     }
 
     // read count_vowels.rs.wasm.json
     let expected: SourceResult = serde_json::from_reader(
-      std::fs::File::open("./src/count_vowels.rs.wasm.json").expect("could not read json file"),
+      std::fs::File::open("./src/count_vowels.wasm.json").expect("could not read json file"),
     )
     .expect("json failed");
     assert_eq!(actual, expected);
