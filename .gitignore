@@ -1,14 +1,19 @@
-# IntelliJ IDEA files
+# IDE files
 .idea
 *.iml
 *~
-
 target/
 .classpath
 .project
 .settings
-
+.vscode
+.cursor
+.cursorrules
 
 # mac-os files
 .DS_Store
 
+.env
+.envrc
+
+.approval_tests_temp

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.github.chirino</groupId>
+  <artifactId>wasm-dwarf-parser</artifactId>
+  <version>999-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>WASM Dwarf Debug Parser</name>
+  <description>Parse dwarf debug symbols from WASM modules</description>
+
+  <url>https://github.com/chirino/wasm-dwarf-parser</url>
+
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>chirino</id>
+      <name>Hiram Chirino</name>
+      <email>hiram@hiramchirino.com</email>
+      <organization>Red Hat</organization>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/chirino/wasm-dwarf-parser.git</connection>
+    <developerConnection>scm:git:git@github.com:chirino/wasm-dwarf-parser.git</developerConnection>
+    <url>https://github.com/chirino/wasm-dwarf-parser</url>
+  </scm>
+
+  <properties>
+    <!-- build settings -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.failOnWarning>true</maven.compiler.failOnWarning>
+    <maven.dependency.failOnWarning>true</maven.dependency.failOnWarning>
+    <project.build.outputTimestamp>2023-01-01T00:00:00Z</project.build.outputTimestamp>
+    <skipITs>true</skipITs>
+
+    <!-- build tool versions -->
+    <checkstyle.version>10.25.0</checkstyle.version>
+    <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
+    <spotless-maven-plugin.version>2.44.5</spotless-maven-plugin.version>
+    <maven.compiler.version>3.14.0</maven.compiler.version>
+    <compiler-plugin.version>${maven.compiler.version}</compiler-plugin.version>
+    <surefire-plugin.version>3.5.2</surefire-plugin.version>
+    <failsafe-plugin.version>${surefire-plugin.version}</failsafe-plugin.version>
+    <jandex.version>3.3.1</jandex.version>
+    <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+    <dependency-plugin.version>3.8.1</dependency-plugin.version>
+
+    <!-- test time versions -->
+    <junit.version>5.13.0</junit.version>
+
+    <!-- runtime versions -->
+    <chicory.version>999-SNAPSHOT</chicory.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.dylibso.chicory</groupId>
+        <artifactId>chicory</artifactId>
+        <version>${chicory.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.dylibso.chicory</groupId>
+      <artifactId>log</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.dylibso.chicory</groupId>
+      <artifactId>runtime</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.dylibso.chicory</groupId>
+      <artifactId>wasi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.dylibso.chicory</groupId>
+      <artifactId>wasm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.approvaltests</groupId>
+      <artifactId>approvaltests</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.dylibso.chicory</groupId>
+      <artifactId>compiler</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.dylibso.chicory</groupId>
+      <artifactId>wasm-corpus</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless-maven-plugin.version}</version>
+          <configuration>
+            <formats>
+              <format>
+                <includes>
+                  <include>*.md</include>
+                  <include>.gitignore</include>
+                </includes>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>2</spacesPerTab>
+                </indent>
+              </format>
+            </formats>
+            <java>
+              <includes>
+                <include>**/src/main/java/**/*.java</include>
+                <include>**/src/test/java/**/*.java</include>
+              </includes>
+              <googleJavaFormat>
+                <version>1.18.1</version>
+                <style>AOSP</style>
+                <reflowLongStrings>true</reflowLongStrings>
+                <formatJavadoc>false</formatJavadoc>
+              </googleJavaFormat>
+              <importOrder/>
+              <jsr223>
+                <name>Wildcard Imports Not Allowed</name>
+                <dependency>org.apache.groovy:groovy-jsr223:4.0.27</dependency>
+                <engine>groovy</engine>
+                <script>def pattern = ~/import\s+(?:static\s+)?[^\*\s]+\*;(\r\n|\r|\n)/
+                                    def matcher = pattern.matcher(source)
+                                    if (matcher.find()) {
+                                    def importText = matcher.group().trim()
+                                    throw new Exception("Wildcard imports not allowed:\n\n    " + importText + "\n\nPlease fully expand the imports.\n")
+                                    }
+                                    source</script>
+              </jsr223>
+              <removeUnusedImports/>
+            </java>
+            <pom>
+              <includes>
+                <include>**/pom.xml</include>
+              </includes>
+              <excludes>
+                <exclude>**/target/**/*.xml</exclude>
+              </excludes>
+              <sortPom>
+                <expandEmptyElements>false</expandEmptyElements>
+                <sortModules>true</sortModules>
+                <sortDependencies>scope,groupId,artifactId</sortDependencies>
+                <sortDependencyExclusions>groupId,artifactId</sortDependencyExclusions>
+                <sortPlugins>groupId,artifactId</sortPlugins>
+              </sortPom>
+            </pom>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${maven-checkstyle-plugin.version}</version>
+          <configuration>
+            <failOnViolation>true</failOnViolation>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <excludeGeneratedSources>true</excludeGeneratedSources>
+            <checkstyleRules>
+              <module name="Checker">
+                <module name="FileTabCharacter">
+                  <property name="fileExtensions" value="java,xml"/>
+                </module>
+                <module name="SuppressWarningsFilter"/>
+                <module name="TreeWalker">
+                  <module name="AnnotationUseStyle"/>
+                  <module name="ArrayTypeStyle"/>
+                  <module name="AtclauseOrder"/>
+                  <module name="AvoidDoubleBraceInitialization"/>
+                  <module name="AvoidNoArgumentSuperConstructorCall"/>
+                  <module name="ConstructorsDeclarationGrouping"/>
+                  <module name="DefaultComesLast"/>
+                  <module name="EmptyBlock">
+                    <property name="option" value="text"/>
+                  </module>
+                  <module name="EmptyCatchBlock"/>
+                  <module name="ExplicitInitialization"/>
+                  <module name="FallThrough"/>
+                  <module name="FinalClass"/>
+                  <module name="HideUtilityClassConstructor"/>
+                  <module name="IllegalCatch">
+                    <property name="illegalClassNames" value="Exception"/>
+                  </module>
+                  <module name="InnerAssignment"/>
+                  <module name="InvalidJavadocPosition"/>
+                  <module name="JavadocBlockTagLocation"/>
+                  <module name="JavadocContentLocation"/>
+                  <module name="JavadocMissingLeadingAsterisk"/>
+                  <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+                  <module name="JavadocTagContinuationIndentation"/>
+                  <module name="ModifiedControlVariable"/>
+                  <module name="ModifierOrder"/>
+                  <module name="MultipleVariableDeclarations"/>
+                  <module name="MutableException"/>
+                  <module name="NeedBraces"/>
+                  <module name="NoClone"/>
+                  <module name="NoFinalizer"/>
+                  <module name="NonEmptyAtclauseDescription"/>
+                  <module name="OneStatementPerLine"/>
+                  <module name="OneTopLevelClass"/>
+                  <module name="OverloadMethodsDeclarationOrder"/>
+                  <module name="PackageDeclaration"/>
+                  <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+                  <module name="SimplifyBooleanExpression"/>
+                  <module name="SimplifyBooleanReturn"/>
+                  <module name="SingleLineJavadoc"/>
+                  <module name="StringLiteralEquality"/>
+                  <module name="SuppressWarningsHolder"/>
+                  <module name="TypeName"/>
+                  <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
+                  <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
+                  <module name="UnnecessarySemicolonInEnumeration"/>
+                  <module name="UnnecessarySemicolonInTryWithResources"/>
+                  <module name="UnusedLocalVariable"/>
+                  <module name="UpperEll"/>
+                </module>
+              </module>
+            </checkstyleRules>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${checkstyle.version}</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <id>checkstyle</id>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <phase>validate</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.version}</version>
+          <configuration>
+            <parameters>true</parameters>
+            <source>11</source>
+            <target>11</target>
+            <annotationProcessorPathsUseDepMgmt>true</annotationProcessorPathsUseDepMgmt>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${maven-javadoc-plugin.version}</version>
+          <configuration>
+            <doclint>all</doclint>
+            <failOnWarnings>true</failOnWarnings>
+            <source>11</source>
+            <release>${maven.compiler.release}</release>
+            <sourceFileExcludes>
+              <sourceFileExclude>**/internal/**</sourceFileExclude>
+            </sourceFileExcludes>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>com.dylibso.chicory</groupId>
+        <artifactId>chicory-compiler-maven-plugin</artifactId>
+        <version>${chicory.version}</version>
+        <executions>
+          <execution>
+            <id>chicory-compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <name>com.dylibso.chicory.dwarf.rust.internal.Wasm</name>
+              <wasmFile>${project.basedir}/rust/target/wasm32-wasip1/release/dwarf-rust.wasm</wasmFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>build-rust</id>
+      <activation>
+        <property>
+          <name>build-rust</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <id>run-build-sh</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <executable>sh</executable>
+                  <arguments>
+                    <argument>./build.sh</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>ci</id>
+      <activation>
+        <property>
+          <name>env.CI</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>check-format</id>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+                <phase>process-sources</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>not-ci</id>
+      <activation>
+        <property>
+          <name>env.CI</name>
+          <value>!true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>format</id>
+                <goals>
+                  <goal>apply</goal>
+                </goals>
+                <phase>process-sources</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.2.7</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.3.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.7.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>true</autoPublish>
+              <waitUntil>published</waitUntil>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+</project>

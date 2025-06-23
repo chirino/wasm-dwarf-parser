@@ -1,12 +1,11 @@
 [package]
-name = "wasm-source-map"
+name = "dwarf-rust"
 version = "0.1.0"
 description = "WebAssembly DWARF parser and location resolver"
 authors = ["Ingvar Stepanyan <rreverser@google.com>", "Hiram Chirino <hiram@hiramchirino.com>"]
 edition = "2018"
 publish = false
 readme = "README"
-repository = "https://github.com/chirino/wasm-source-map"
 license = "BSD-style"
 
 [dependencies]
